@@ -586,9 +586,21 @@ body {
   animation: ds-drawer 0.28s ease;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 720px) and (max-width: 1140px) {
+  .site-nav-desktop {
+    gap: 0.65rem;
+  }
+
+  .site-nav-link {
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+  }
+}
+
+@media (min-width: 720px) {
   .site-nav-desktop {
     display: flex;
+    flex-shrink: 0;
   }
 
   .site-nav-toggle,

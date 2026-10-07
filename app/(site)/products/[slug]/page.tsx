@@ -97,12 +97,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                   <WhatsAppMark className="size-4" />
                   WhatsApp enquiry
                 </a>
-              ) : (
-                <Link href={chat.href} className="ds-btn ds-btn-wa ds-button w-full min-[480px]:w-auto">
-                  <WhatsAppMark className="size-4" />
-                  WhatsApp enquiry
-                </Link>
-              )}
+              ) : null}
             </div>
           </div>
         </div>

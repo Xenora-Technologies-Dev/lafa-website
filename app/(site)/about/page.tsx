@@ -34,14 +34,14 @@ export default function AboutPage() {
             Buyers deal with LAFA by enquiry. Name the product and the quantity. Prices are not published, and there is no cart. Availability is confirmed in the reply.
           </p>
         </div>
-        <p className="mt-8 flex flex-col gap-3 min-[480px]:flex-row">
-          <Button asChild>
+        <div className="mt-8 flex flex-col gap-3 min-[480px]:flex-row">
+          <Button asChild className="w-full min-[480px]:w-auto">
             <Link href="/products">See the food range</Link>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="w-full min-[480px]:w-auto">
             <Link href="/contact">Send an enquiry</Link>
           </Button>
-        </p>
+        </div>
         <ul className="ds-card-grid mt-16">
           {capabilities.map((item) => (
             <li key={item.title} className="border border-line bg-paper p-5">

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
 import { ImageBlock } from '@/components/system/image-block';
 
 export function ProductCard({
@@ -66,6 +67,7 @@ export function ProductCard({
           </Link>
           {enquireExternal ? (
             <a href={enquireHref} className="ds-btn ds-btn-wa ds-btn-sm ds-button w-full min-[420px]:w-auto" target="_blank" rel="noopener noreferrer">
+              <WhatsAppMark className="size-4" />
               {enquireLabel}
             </a>
           ) : (

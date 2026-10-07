@@ -51,19 +51,14 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             Direct phone, WhatsApp, and street address are shared in the reply when they help close the enquiry.
           </p>
         )}
-        <p className="mt-5">
-          {chat.external ? (
+        {chat.external ? (
+          <p className="mt-5">
             <a href={chat.href} className="ds-btn ds-btn-wa ds-button w-full" target="_blank" rel="noopener noreferrer">
               <WhatsAppMark className="size-4" />
               WhatsApp enquiry
             </a>
-          ) : (
-            <a href="#enquiry-form" className="ds-btn ds-btn-wa ds-button w-full">
-              <WhatsAppMark className="size-4" />
-              WhatsApp enquiry
-            </a>
-          )}
-        </p>
+          </p>
+        ) : null}
         <p className="mt-4 text-sm leading-6 text-stone">
           Enquiries are for wholesale food supply only. Consumer retail orders are not accepted through this site.
         </p>

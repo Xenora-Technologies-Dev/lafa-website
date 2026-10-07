@@ -8,7 +8,9 @@ export function SiteHeader() {
     <Header
       items={primaryNav}
       action={{ href: '/contact', label: 'Enquire' }}
-      alternate={{ href: chat.href, label: 'WhatsApp', external: chat.external, tone: 'whatsapp' }}
+      alternate={
+        chat.external ? { href: chat.href, label: 'WhatsApp', external: true, tone: 'whatsapp' } : undefined
+      }
     />
   );
 }

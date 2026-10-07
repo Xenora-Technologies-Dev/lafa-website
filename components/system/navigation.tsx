@@ -64,6 +64,15 @@ export function Navigation({
   }, [pathname]);
 
   useEffect(() => {
+    const media = window.matchMedia('(min-width: 720px)');
+    const onChange = () => {
+      if (media.matches) setOpen(false);
+    };
+    media.addEventListener('change', onChange);
+    return () => media.removeEventListener('change', onChange);
+  }, []);
+
+  useEffect(() => {
     const header = buttonRef.current?.closest('header');
     if (!header) return;
     const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 6);
