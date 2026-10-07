@@ -1,0 +1,32 @@
+[
+  {
+    "id": "post-sourcing-through-dubai",
+    "title": "Sourcing food through Dubai",
+    "slug": "sourcing-food-through-dubai",
+    "excerpt": "How a Dubai trading desk bridges origin markets and wholesale buyers without turning the website into a shop.",
+    "body": "Dubai sits between origin markets and the buyers who need food in volume. For LAFA General Trading, the work starts with a clear product brief: the commodity, the pack, the quantity, and the destination market.\n\nThis site presents the licensed food range and the enquiry path. It does not publish prices or take orders. Availability, origin, and commercial terms are confirmed in the reply once the desk can check what can be offered for that brief.\n\nBuyers who already know the line they need can open a product page and send an enquiry from there. Buyers who are still defining the mix can start from a category or the contact form and name the goods in their own words.",
+    "image": {
+      "src": "/images/home/lafa-hero.jpg",
+      "alt": "Rice, oil, spices, and citrus arranged for wholesale food trade."
+    },
+    "publishedAt": "2026-02-12T09:00:00.000Z",
+    "published": true,
+    "createdAt": "2026-02-12T09:00:00.000Z",
+    "updatedAt": "2026-02-12T09:00:00.000Z"
+  },
+  {
+    "id": "post-what-to-include-in-a-wholesale-enquiry",
+    "title": "What to include in a wholesale enquiry",
+    "slug": "what-to-include-in-a-wholesale-enquiry",
+    "excerpt": "A short checklist that helps the desk confirm availability: product, pack, volume, and market.",
+    "body": "A useful wholesale enquiry does not need to be long. It needs to be specific enough for the desk to check supply.\n\nInclude the product or category, the pack if you know it, the approximate volume, and the country or market the goods are for. If origin, brand preference, or delivery window matters, say so. Prices are quoted in the reply. They are not listed on this site.\n\nLAFA works with wholesalers, retailers, and HORECA buyers. The contact form is for business enquiries about supply, not consumer orders.",
+    "image": {
+      "src": "/images/home/lafa-trade.jpg",
+      "alt": "A cargo ship berthed beside stacked containers."
+    },
+    "publishedAt": "2026-03-18T09:00:00.000Z",
+    "published": true,
+    "createdAt": "2026-03-18T09:00:00.000Z",
+    "updatedAt": "2026-03-18T09:00:00.000Z"
+  }
+]

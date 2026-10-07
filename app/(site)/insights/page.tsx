@@ -11,7 +11,7 @@ export const revalidate = 60;
 
 export const metadata: Metadata = pageMeta({
   title: 'Insights',
-  description: 'Trade notes from LAFA General Trading. Supply notes and market updates, when published.',
+  description: 'Trade notes from LAFA General Trading on food sourcing, wholesale supply, and working with a Dubai trading desk.',
   path: '/insights',
 });
 
@@ -22,7 +22,7 @@ export default async function InsightsPage() {
       <PageHeader
         eyebrow="Insights"
         title="Notes from the trade."
-        lede="Supply notes and market updates. Only published pieces are listed."
+        lede="Practical notes on food sourcing and wholesale enquiry work from Dubai."
       />
       {posts.length ? (
         <ul className="mt-12 max-w-3xl space-y-4">
@@ -40,7 +40,15 @@ export default async function InsightsPage() {
         </ul>
       ) : (
         <div className="mt-12">
-          <EmptyState title="No insights published yet." text="Notes on supply and the food trade will appear here when they are published." />
+          <EmptyState
+            title="Insights will appear here."
+            text="Meanwhile, browse the food range or send a wholesale enquiry with the product and quantity you need."
+            action={
+              <Link href="/products" className="ds-btn ds-button">
+                Browse products
+              </Link>
+            }
+          />
         </div>
       )}
     </Container>

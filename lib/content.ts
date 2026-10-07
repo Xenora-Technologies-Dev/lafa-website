@@ -35,7 +35,7 @@ export const capabilities = [
 export const enquirySteps = [
   {
     title: 'Name the product',
-    text: 'Choose a category, or open a listed product when one is published.',
+    text: 'Choose a category or open a listed product from the catalogue.',
   },
   {
     title: 'State the quantity',
@@ -43,6 +43,6 @@ export const enquirySteps = [
   },
   {
     title: 'We reply with availability',
-    text: 'A response time is not promised here. Price is quoted in the reply, not on this site.',
+    text: 'Price is quoted in the reply, not on this site. Nothing here is an order.',
   },
 ] as const;

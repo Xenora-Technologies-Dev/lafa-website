@@ -14,7 +14,7 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
             id="featured-title"
             eyebrow="From the catalogue"
             title="Featured products"
-            lede="A selection from the published list. Each card opens the product and an enquiry."
+            lede="A selection from the catalogue. Each card opens the product page and an enquiry."
           />
           <Link href="/products" className="ds-small font-semibold text-navy hover:text-gold-deep">
             All products
@@ -31,11 +31,11 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
         ) : (
           <div className="mt-12">
             <EmptyState
-              title="No products are published yet."
-              text="The catalogue fills as lines are published. You can still enquire with the product and the quantity."
+              title="Browse the full catalogue."
+              text="Open the products list to review the food range, or send an enquiry with the product and quantity you need."
               action={
-                <Link href="/contact" className="ds-btn ds-button">
-                  Request an enquiry
+                <Link href="/products" className="ds-btn ds-button">
+                  View products
                 </Link>
               }
             />

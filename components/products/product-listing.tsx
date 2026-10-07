@@ -35,12 +35,12 @@ export async function ProductListing({
   const emptyTitle = result.q || result.unknownCategory
     ? 'No products match.'
     : result.category
-      ? 'Nothing is listed in this category yet.'
-      : 'No products are published yet.';
+      ? 'No lines in this category right now.'
+      : 'No products match your filters.';
 
   const emptyText = result.q || result.unknownCategory
     ? 'Try another category, or send an enquiry with the product and the quantity.'
-    : 'Publish products from the admin desk when Neon is connected, or send an enquiry with the product and the quantity.';
+    : 'Clear the filters, browse another category, or send an enquiry with the product and quantity you need.';
 
   return (
     <Container className="py-12 sm:py-16">

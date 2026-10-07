@@ -37,7 +37,7 @@ data/categories.json  licensed categories for the Neon seed
 db/schema.sql         Neon schema
 scripts/db-setup.mjs  applies the schema and seeds categories
 public/__forms.html   static Netlify Forms detection form
-public/images/home/   temporary photographs
+public/images/home/   category and home photographs
 public/logo.png       supplied lockup, used unchanged
 ```
 
@@ -101,7 +101,10 @@ Do not add Sanity project keys. This site does not use Sanity.
 2. Run `npm run db:setup`. It creates `categories`, `products`, `posts`, and `enquiries`, then inserts the licensed categories from `data/categories.json`. Later runs do not overwrite existing category rows.
 3. A category that still has products cannot be deleted. Category slugs in Neon stay fixed after creation.
 
-The public food catalogue reads Neon through `lib/products/repository.ts`. If `DATABASE_URL` is missing, the site shows licensed category shells and an empty product list (no sample catalogue). Insights fall back to an empty list.
+The public food catalogue ships a curated static list in `data/products.json` with local images under `public/images/home`. Categories come from `data/categories.json` (licence food groups plus general wholesale). Insights seed posts live in `data/posts.json`.
+
+If `DATABASE_URL` is set and Neon has published products, those replace the static product list. Otherwise the static catalogue keeps the public site complete without admin uploads or ImageKit.
+
 
 ## ImageKit setup
 
@@ -115,7 +118,7 @@ Sign in at `/admin/login` and use **Products**. Each product needs a unique slug
 
 The repository in `lib/products/repository.ts` is the only module the public pages call for catalogue data.
 
-## How to replace placeholder images
+## How to replace catalogue images
 
 Temporary photographs live in `public/images/home/`. Category cards use those paths until a product has its own ImageKit URL. The logo file `public/logo.png` is the supplied lockup. Do not crop, recolor, or redraw it. Use `BrandLogo`.
 

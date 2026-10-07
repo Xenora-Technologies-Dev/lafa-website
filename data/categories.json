@@ -3,7 +3,7 @@
     "id": "category-fruit-and-vegetables",
     "title": "Fruit & vegetables",
     "slug": "fruit-and-vegetables",
-    "description": "Wholesale of fruit and vegetables.",
+    "description": "Fresh and chilled fruit and vegetables for wholesale buyers, including citrus, potatoes, onions, and mixed produce lines.",
     "sortOrder": 1,
     "weight": "primary",
     "licenceCode": "4630.01"
@@ -12,7 +12,7 @@
     "id": "category-dairy",
     "title": "Dairy",
     "slug": "dairy",
-    "description": "Wholesale of dairy products.",
+    "description": "Dairy products for wholesale supply, including milk powders, cheese, butter, and related lines sourced to specification.",
     "sortOrder": 2,
     "weight": "primary",
     "licenceCode": "4630.02"
@@ -21,7 +21,7 @@
     "id": "category-eggs",
     "title": "Eggs",
     "slug": "eggs",
-    "description": "Wholesale of eggs and egg products.",
+    "description": "Table eggs and egg products for distributors, retail buyers, and food-service procurement.",
     "sortOrder": 3,
     "weight": "primary",
     "licenceCode": "4630.03"
@@ -30,7 +30,7 @@
     "id": "category-edible-oils-and-fats",
     "title": "Edible oils & fats",
     "slug": "edible-oils-and-fats",
-    "description": "Wholesale of edible oils and fats of animal or vegetable origin.",
+    "description": "Edible oils and fats of vegetable or animal origin for wholesale trade, packed for commercial buyers.",
     "sortOrder": 4,
     "weight": "primary",
     "licenceCode": "4630.04"
@@ -39,7 +39,7 @@
     "id": "category-meat",
     "title": "Meat",
     "slug": "meat",
-    "description": "Wholesale of meat and meat products.",
+    "description": "Frozen and chilled meat and meat products for wholesale buyers across retail and HORECA channels.",
     "sortOrder": 5,
     "weight": "primary",
     "licenceCode": "4630.05"
@@ -48,7 +48,7 @@
     "id": "category-fish-and-seafood",
     "title": "Fish & seafood",
     "slug": "fish-and-seafood",
-    "description": "Wholesale of fishery products.",
+    "description": "Fishery products for wholesale supply, including frozen fish, shrimp, and related seafood lines.",
     "sortOrder": 6,
     "weight": "primary",
     "licenceCode": "4630.06"
@@ -57,7 +57,7 @@
     "id": "category-sugar-and-confectionery",
     "title": "Sugar & confectionery",
     "slug": "sugar-and-confectionery",
-    "description": "Wholesale of sugar, chocolate and sugar confectionery.",
+    "description": "Refined sugar, chocolate, and sugar confectionery for distributors and industrial buyers.",
     "sortOrder": 7,
     "weight": "primary",
     "licenceCode": "4630.07"
@@ -66,7 +66,7 @@
     "id": "category-bakery",
     "title": "Bakery",
     "slug": "bakery",
-    "description": "Wholesale of bakery products.",
+    "description": "Bakery products for wholesale trade, from bread and crackers to biscuits and related dry bakery lines.",
     "sortOrder": 8,
     "weight": "primary",
     "licenceCode": "4630.08"
@@ -75,7 +75,7 @@
     "id": "category-beverages",
     "title": "Beverages",
     "slug": "beverages",
-    "description": "Wholesale of beverages.",
+    "description": "Beverages for wholesale buyers, including juices, soft drinks, and bottled water where available.",
     "sortOrder": 9,
     "weight": "primary",
     "licenceCode": "4630.09"
@@ -84,7 +84,7 @@
     "id": "category-coffee-tea-cocoa-spices",
     "title": "Coffee, tea, cocoa & spices",
     "slug": "coffee-tea-cocoa-spices",
-    "description": "Wholesale of coffee, tea, cocoa and spices.",
+    "description": "Coffee, tea, cocoa, and spices sourced for wholesale supply into Dubai and export markets.",
     "sortOrder": 10,
     "weight": "primary",
     "licenceCode": "4630.10"
@@ -93,7 +93,7 @@
     "id": "category-general-wholesale",
     "title": "General wholesale",
     "slug": "general-wholesale",
-    "description": "LAFA can source a variety of non-food goods under its general trading licence. Food is the focus of this site.",
+    "description": "LAFA can source selected non-food goods under its general trading licence. Food remains the focus of this site.",
     "sortOrder": 11,
     "weight": "secondary",
     "licenceCode": "4690.00"

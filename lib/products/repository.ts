@@ -1,7 +1,7 @@
 import { unstable_cache } from 'next/cache';
-import { seedCategories } from '@/lib/categories';
 import { databaseConfigured } from '@/lib/db';
 import { legacyCategorySlugs, legacyProductSlugs, toProductCategory } from '@/lib/products/category-meta';
+import { staticProductCategories, staticProducts } from '@/lib/products/mock-data';
 import type { Product, ProductCategory, ProductListResult, ProductQuery } from '@/lib/products/types';
 import { queryPublishedSnapshot } from '@/lib/queries';
 import type { Category, Product as DbProduct } from '@/lib/types';
@@ -54,31 +54,33 @@ function mapCategories(categories: Category[]): ProductCategory[] {
     );
 }
 
-/**
- * Licensed category shells when Neon is not configured.
- * Products stay empty so production never silently shows the old sample catalogue.
- */
-function offlineCategories(): ProductCategory[] {
-  return mapCategories(seedCategories);
+function offlineCatalogue(): { categories: ProductCategory[]; products: Product[] } {
+  return {
+    categories: staticProductCategories(),
+    products: staticProducts(),
+  };
 }
 
 async function loadCatalogueSource(): Promise<{ categories: ProductCategory[]; products: Product[] }> {
-  if (!databaseConfigured()) {
-    return { categories: offlineCategories(), products: [] };
-  }
+  if (!databaseConfigured()) return offlineCatalogue();
   try {
     const snapshot = await queryPublishedSnapshot();
-    const categories =
-      snapshot.categories.length > 0 ? mapCategories(snapshot.categories) : offlineCategories();
     const products = snapshot.products
       .filter((product) => product.published)
       .map(mapDbProduct)
       .sort((a, b) => a.name.localeCompare(b.name, 'en'));
+
+    // Prefer Neon only when it actually has published products.
+    // Otherwise keep the curated static catalogue so the public site stays complete.
+    if (products.length === 0) return offlineCatalogue();
+
+    const categories =
+      snapshot.categories.length > 0 ? mapCategories(snapshot.categories) : staticProductCategories();
     return { categories, products };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    console.warn(`Public catalogue could not be loaded (${message}). Showing licensed categories with no products.`);
-    return { categories: offlineCategories(), products: [] };
+    console.warn(`Public catalogue could not be loaded (${message}). Using the curated static catalogue.`);
+    return offlineCatalogue();
   }
 }
 
@@ -88,9 +90,9 @@ const getCatalogueSource = unstable_cache(loadCatalogueSource, ['public-product-
 });
 
 /**
- * Data access for the public catalogue.
- * Reads Neon when DATABASE_URL is set. Without it, categories come from the
- * licence seed and products stay empty (no sample catalogue).
+ * Public catalogue data access.
+ * Without Neon (or when Neon has no published products), the curated static
+ * catalogue in data/products.json is used with local images from /public.
  */
 export async function listProductCategories(): Promise<ProductCategory[]> {
   const { categories } = await getCatalogueSource();
@@ -173,8 +175,8 @@ export async function listRelatedProducts(product: Product, limit = 4): Promise<
 
 export async function listFeaturedProducts(limit = 4): Promise<Product[]> {
   const { products } = await getCatalogueSource();
-  // Neon has no featured flag yet; show the first published lines alphabetically.
-  return products.slice(0, limit);
+  const featured = products.filter((product) => product.featured);
+  return (featured.length ? featured : products).slice(0, limit);
 }
 
 export async function listPublishedProducts(): Promise<Product[]> {

@@ -35,10 +35,8 @@ export function ImageBlock({
           />
         </div>
       ) : (
-        <div role="img" aria-label={`${alt}. Placeholder image. Photograph not yet available.`} className={cn('ds-placeholder', aspect)}>
-          <span className="ds-label">Placeholder</span>
-          <span className="ds-h3">{alt}</span>
-          <span className="ds-small">Photograph to follow</span>
+        <div role="img" aria-label={alt} className={cn('ds-placeholder', aspect)}>
+          <span className="ds-h3 px-6 text-center">{alt}</span>
         </div>
       )}
       {caption ? <figcaption className="ds-small mt-3">{caption}</figcaption> : null}

@@ -1,11 +1,11 @@
 /**
- * Temporary photographs in /public. Replace a `src` string with an ImageKit URL
- * when the real file is ready. Components only receive that string.
+ * Local photographs in /public/images/home used across the public site.
+ * ImageKit URLs can replace a src string later without changing components.
  */
 export const homeMedia = {
   hero: {
     src: '/images/home/lafa-hero.jpg',
-    alt: 'Rice, wheat, oil, spices, and citrus arranged for wholesale.',
+    alt: 'Rice, oil, spices, and citrus arranged for wholesale food trade.',
   },
   trade: {
     src: '/images/home/lafa-trade.jpg',

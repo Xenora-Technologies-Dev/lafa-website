@@ -125,7 +125,7 @@ export function ContactForm({ interest }: { interest: string }) {
       </Button>
       {status === 'local' ? (
         <p className="text-sm leading-6 text-stone" role="status">
-          This form stores enquiries in Neon when the database is connected, and on Netlify after deploy. A local preview without a database does not deliver it. Email notification stays off until LAFA names the inbox.
+          On this local preview the enquiry is not delivered. After deploy, submissions are stored for the desk to read. You will receive a reply by email.
         </p>
       ) : null}
       {status === 'error' ? (

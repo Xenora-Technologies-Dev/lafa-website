@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 const fallbackImage = {
   url: '/images/home/lafa-hero.jpg',
-  alt: 'Rice, wheat, oil, spices, and citrus arranged for wholesale.',
+  alt: 'Rice, oil, spices, and citrus arranged for wholesale food trade.',
 };
 
 export function pageMeta({

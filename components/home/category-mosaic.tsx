@@ -13,7 +13,7 @@ export function CategoryMosaic({ categories }: { categories: ProductCategory[] }
           id="categories-title"
           eyebrow="The range"
           title="Food categories we trade"
-          lede="Licensed food wholesale groups. Open a category to see products when they are published."
+          lede="Licensed food wholesale groups. Open a category to browse the lines we trade."
         />
         <ul className="mt-12 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((category, index) => (

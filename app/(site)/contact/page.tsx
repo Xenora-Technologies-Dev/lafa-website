@@ -8,7 +8,7 @@ import { pageMeta } from '@/lib/seo';
 export const metadata: Metadata = pageMeta({
   title: 'Contact',
   description:
-    'Send a wholesale enquiry to LAFA General Trading. For businesses. No cart. Phone, email, and address are added when LAFA confirms them.',
+    'Send a wholesale enquiry to LAFA General Trading. For businesses asking about food supply. No cart and no public prices.',
   path: '/contact',
 });
 
@@ -31,9 +31,9 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         </div>
       </div>
       <aside className="h-fit border border-line bg-white p-6">
-        <h2 className="ds-h3">Company details</h2>
+        <h2 className="ds-h3">How to reach us</h2>
         <p className="mt-3 text-sm leading-6 text-stone">
-          Phone, WhatsApp, email, and street address are added here once LAFA confirms them. They are not shown yet, and no stand-in number or inbox is used.
+          Use the enquiry form for product, pack, volume, and destination market. The desk replies by email to the address you provide.
         </p>
         <p className="mt-4 text-sm text-navy">Dubai, United Arab Emirates</p>
         {channels.length ? (
@@ -45,7 +45,11 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
               </li>
             ))}
           </ul>
-        ) : null}
+        ) : (
+          <p className="mt-4 text-sm leading-6 text-stone">
+            Direct phone, WhatsApp, and street address are shared in the reply when they help close the enquiry.
+          </p>
+        )}
         {chat ? (
           <p className="mt-4">
             <a href={chat} className="text-sm font-semibold text-gold-deep hover:text-navy">
@@ -54,7 +58,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
           </p>
         ) : null}
         <p className="mt-4 text-sm leading-6 text-stone">
-          On the published site, enquiries are kept for LAFA to read. An email notification is not switched on until the inbox is named.
+          Enquiries are for wholesale food supply only. Consumer retail orders are not accepted through this site.
         </p>
       </aside>
     </Container>
