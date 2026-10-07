@@ -1,19 +1,26 @@
 import Link from 'next/link';
+import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
 import { Container } from '@/components/system/container';
 
 type CtaAction = { href: string; label: string; external?: boolean };
 
 function CtaLink({ action, className }: { action: CtaAction; className: string }) {
+  const content = (
+    <>
+      {action.external || action.label.toLowerCase().includes('whatsapp') ? <WhatsAppMark className="size-4" /> : null}
+      {action.label}
+    </>
+  );
   if (action.external) {
     return (
       <a href={action.href} className={className} target="_blank" rel="noopener noreferrer">
-        {action.label}
+        {content}
       </a>
     );
   }
   return (
     <Link href={action.href} className={className}>
-      {action.label}
+      {content}
     </Link>
   );
 }
@@ -36,9 +43,9 @@ export function Cta({
           <h2 className="ds-h2">{title}</h2>
           {text ? <p className="ds-body mt-4">{text}</p> : null}
         </div>
-        <div className="flex flex-wrap gap-3">
-          <CtaLink action={action} className="ds-btn ds-btn-accent ds-button" />
-          {secondary ? <CtaLink action={secondary} className="ds-btn ds-btn-outline ds-button" /> : null}
+        <div className="flex w-full flex-col gap-3 min-[480px]:w-auto min-[480px]:flex-row min-[480px]:flex-wrap">
+          <CtaLink action={action} className="ds-btn ds-btn-accent ds-button w-full min-[480px]:w-auto" />
+          {secondary ? <CtaLink action={secondary} className="ds-btn ds-btn-wa ds-button w-full min-[480px]:w-auto" /> : null}
         </div>
       </Container>
     </section>

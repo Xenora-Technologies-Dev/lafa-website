@@ -21,7 +21,7 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
           </Link>
         </div>
         {products.length ? (
-          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="ds-card-grid mt-12">
             {products.map((product) => (
               <li key={product.id}>
                 <CatalogueCard product={product} />

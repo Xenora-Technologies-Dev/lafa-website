@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/contact/contact-form';
+import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
 import { Container } from '@/components/layout/container';
 import { PageHeader } from '@/components/sections/page-header';
-import { confirmedChannels, whatsappHref } from '@/lib/contact';
+import { confirmedChannels, whatsappAction } from '@/lib/contact';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = pageMeta({
@@ -16,17 +17,17 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
   const params = await searchParams;
   const interest = params.product?.trim() || '';
   const channels = confirmedChannels();
-  const chat = whatsappHref(interest || undefined);
+  const chat = whatsappAction(interest || undefined);
 
   return (
-    <Container className="grid gap-12 py-16 sm:py-20 lg:grid-cols-[minmax(0,1fr)_20rem]">
+    <Container className="grid gap-12 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:py-20">
       <div>
         <PageHeader
           eyebrow="Contact"
           title="Wholesale enquiries."
           lede="This form is for businesses asking about supply. It is not an order and it does not show a price. Say what you need and the quantity."
         />
-        <div className="mt-10 max-w-xl">
+        <div id="enquiry-form" className="mt-10 max-w-xl scroll-mt-28">
           <ContactForm key={interest} interest={interest} />
         </div>
       </div>
@@ -50,13 +51,19 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             Direct phone, WhatsApp, and street address are shared in the reply when they help close the enquiry.
           </p>
         )}
-        {chat ? (
-          <p className="mt-4">
-            <a href={chat} className="text-sm font-semibold text-gold-deep hover:text-navy">
-              WhatsApp chat
+        <p className="mt-5">
+          {chat.external ? (
+            <a href={chat.href} className="ds-btn ds-btn-wa ds-button w-full" target="_blank" rel="noopener noreferrer">
+              <WhatsAppMark className="size-4" />
+              WhatsApp enquiry
             </a>
-          </p>
-        ) : null}
+          ) : (
+            <a href="#enquiry-form" className="ds-btn ds-btn-wa ds-button w-full">
+              <WhatsAppMark className="size-4" />
+              WhatsApp enquiry
+            </a>
+          )}
+        </p>
         <p className="mt-4 text-sm leading-6 text-stone">
           Enquiries are for wholesale food supply only. Consumer retail orders are not accepted through this site.
         </p>

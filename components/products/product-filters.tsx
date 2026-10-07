@@ -33,7 +33,7 @@ export function ProductFilters({
         </button>
       </form>
       <nav aria-label="Product categories">
-        <ul className="flex gap-x-5 gap-y-3 overflow-x-auto border-b border-line py-1 pb-3">
+        <ul className="ds-chip-row">
           <li className="shrink-0">
             <Link
               href={productListHref({ q })}

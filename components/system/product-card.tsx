@@ -34,7 +34,7 @@ export function ProductCard({
 
   if (!enquireHref) {
     return (
-      <Link href={href} className="flex h-full flex-col border border-line bg-paper transition-colors hover:border-gold focus-visible:border-gold">
+      <Link href={href} className="ds-card flex h-full flex-col border border-line bg-paper focus-visible:border-gold">
         {media}
         <span className="flex flex-1 flex-col p-4 sm:p-5">
           {category ? <span className="ds-label">{category}</span> : null}
@@ -47,7 +47,7 @@ export function ProductCard({
   }
 
   return (
-    <article className="flex h-full flex-col border border-line bg-paper">
+    <article className="ds-card flex h-full flex-col border border-line bg-paper">
       <Link href={href} className="block focus-visible:outline-offset-0">
         {media}
       </Link>
@@ -60,16 +60,16 @@ export function ProductCard({
         </h3>
         {description ? <p className="ds-small mt-2 line-clamp-3">{description}</p> : null}
         {meta ? <p className="ds-meta-value mt-3">{meta}</p> : null}
-        <div className="mt-5 flex flex-wrap gap-3">
-          <Link href={href} className="ds-btn ds-btn-sm ds-button">
+        <div className="mt-5 flex flex-col gap-3 min-[420px]:flex-row min-[420px]:flex-wrap">
+          <Link href={href} className="ds-btn ds-btn-sm ds-button w-full min-[420px]:w-auto">
             {viewLabel}
           </Link>
           {enquireExternal ? (
-            <a href={enquireHref} className="ds-btn ds-btn-outline ds-btn-sm ds-button" target="_blank" rel="noopener noreferrer">
+            <a href={enquireHref} className="ds-btn ds-btn-wa ds-btn-sm ds-button w-full min-[420px]:w-auto" target="_blank" rel="noopener noreferrer">
               {enquireLabel}
             </a>
           ) : (
-            <Link href={enquireHref} className="ds-btn ds-btn-outline ds-btn-sm ds-button">
+            <Link href={enquireHref} className="ds-btn ds-btn-outline ds-btn-sm ds-button w-full min-[420px]:w-auto">
               {enquireLabel}
             </Link>
           )}

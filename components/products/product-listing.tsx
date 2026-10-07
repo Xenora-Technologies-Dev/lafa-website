@@ -54,7 +54,7 @@ export async function ProductListing({
         {result.q ? ` for “${result.q}”` : ''}
       </p>
       {result.products.length ? (
-        <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="ds-card-grid mt-8">
           {result.products.map((product) => (
             <li key={product.id}>
               <CatalogueCard product={product} />

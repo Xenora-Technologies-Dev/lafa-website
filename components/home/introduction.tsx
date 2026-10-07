@@ -31,7 +31,7 @@ export function Introduction() {
         </div>
         <dl className="border-t border-line">
           {introductionFacts.map((fact) => (
-            <div key={fact.label} className="grid grid-cols-[7rem_minmax(0,1fr)] gap-4 border-b border-line py-4">
+            <div key={fact.label} className="grid grid-cols-1 gap-1 border-b border-line py-4 min-[420px]:grid-cols-[7.5rem_minmax(0,1fr)] min-[420px]:items-baseline min-[420px]:gap-4">
               <dt className="ds-label text-stone">{fact.label}</dt>
               <dd className="text-sm leading-6 text-navy">{fact.value}</dd>
             </div>

@@ -12,10 +12,10 @@ export function Header({
   alternate?: NavItem;
 }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper">
+    <header className="site-header">
       <div className="h-px bg-gold" aria-hidden="true" />
-      <div className="ds-container relative flex items-center justify-between gap-4 py-3">
-        <Link href="/" className="shrink-0" aria-label="LAFA General Trading, home">
+      <div className="ds-container site-header-bar">
+        <Link href="/" className="site-logo" aria-label="LAFA General Trading, home">
           <BrandLogo priority />
         </Link>
         <Navigation items={items} action={action} alternate={alternate} />

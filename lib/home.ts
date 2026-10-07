@@ -41,4 +41,5 @@ export const introductionFacts = [
   { label: 'Work', value: 'Sourcing, import, and export' },
   { label: 'Supply', value: 'Wholesale food' },
   { label: 'Buyers', value: 'Businesses, by enquiry' },
+  { label: 'Pricing', value: 'Quoted on enquiry' },
 ] as const;

@@ -9,7 +9,8 @@ import { JsonLd } from '@/components/layout/json-ld';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { Container } from '@/components/layout/container';
 import { canonicalCategorySlug, getProductBySlug, getProductCategory, imageAlt, imageSrc, listProductCategories, listPublishedProducts, listRelatedProducts, productListHref, productPath } from '@/lib/products';
-import { whatsappHref } from '@/lib/contact';
+import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
+import { whatsappAction } from '@/lib/contact';
 import { pageMeta } from '@/lib/seo';
 import { COMPANY, siteOrigin } from '@/lib/site';
 
@@ -58,7 +59,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
   const [category, related] = await Promise.all([getProductCategory(product.category), listRelatedProducts(product)]);
   const path = productPath(product);
-  const chat = whatsappHref(product.name);
+  const chat = whatsappAction(product.name);
   const origin = siteOrigin();
   const image = imageSrc(product.image);
 
@@ -87,15 +88,21 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <p className="ds-body mt-5">{product.description}</p>
             <ProductSpecs product={product} />
             <p className="ds-small mt-6">Price is quoted on enquiry. Nothing on this page is an order.</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href={`/contact?product=${encodeURIComponent(product.name)}`} className="ds-btn ds-button">
+            <div className="mt-6 flex flex-col gap-3 min-[480px]:flex-row min-[480px]:flex-wrap">
+              <Link href={`/contact?product=${encodeURIComponent(product.name)}`} className="ds-btn ds-button w-full min-[480px]:w-auto">
                 Request an enquiry
               </Link>
-              {chat ? (
-                <a href={chat} className="ds-btn ds-btn-outline ds-button" target="_blank" rel="noopener noreferrer">
+              {chat.external ? (
+                <a href={chat.href} className="ds-btn ds-btn-wa ds-button w-full min-[480px]:w-auto" target="_blank" rel="noopener noreferrer">
+                  <WhatsAppMark className="size-4" />
                   WhatsApp enquiry
                 </a>
-              ) : null}
+              ) : (
+                <Link href={chat.href} className="ds-btn ds-btn-wa ds-button w-full min-[480px]:w-auto">
+                  <WhatsAppMark className="size-4" />
+                  WhatsApp enquiry
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -104,7 +111,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <h2 id="related-title" className="ds-h2">
               Related products
             </h2>
-            <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="ds-card-grid mt-8">
               {related.map((item) => (
                 <li key={item.id}>
                   <CatalogueCard product={item} />

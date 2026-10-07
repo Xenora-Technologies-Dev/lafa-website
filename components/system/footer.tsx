@@ -57,7 +57,7 @@ export function Footer({
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="ds-container py-4">
+        <div className="ds-container site-footer-legal py-4">
           <Small>{legal}</Small>
         </div>
       </div>

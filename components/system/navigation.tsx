@@ -4,9 +4,10 @@ import { useEffect, useId, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
 import { cn } from '@/lib/utils';
 
-export type NavItem = { href: string; label: string; external?: boolean };
+export type NavItem = { href: string; label: string; external?: boolean; tone?: 'whatsapp' };
 
 function isCurrent(pathname: string, href: string) {
   if (href === '/') return pathname === '/';
@@ -23,16 +24,22 @@ function ItemLink({
   className?: string;
   onClick?: () => void;
 }) {
+  const content = (
+    <>
+      {item.tone === 'whatsapp' ? <WhatsAppMark className="size-4 shrink-0" /> : null}
+      <span>{item.label}</span>
+    </>
+  );
   if (item.external) {
     return (
       <a href={item.href} className={className} target="_blank" rel="noopener noreferrer" onClick={onClick}>
-        {item.label}
+        {content}
       </a>
     );
   }
   return (
     <Link href={item.href} className={className} onClick={onClick}>
-      {item.label}
+      {content}
     </Link>
   );
 }
@@ -55,6 +62,15 @@ export function Navigation({
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const header = buttonRef.current?.closest('header');
+    if (!header) return;
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 6);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   function closeMenu() {
     setOpen(false);
@@ -79,45 +95,45 @@ export function Navigation({
     };
   }, [open]);
 
+  const whatsappClass = 'ds-btn ds-btn-wa ds-button';
+
   return (
-    <>
-      <nav className="hidden items-center gap-5 xl:gap-7 lg:flex" aria-label="Primary">
+    <div className="site-header-tools">
+      <nav className="site-nav-desktop" aria-label="Primary">
         {items.map((item) => (
           <Link
             key={item.href}
             href={item.href}
             aria-current={isCurrent(pathname, item.href) ? 'page' : undefined}
-            className="ds-nav py-1"
+            className="ds-nav site-nav-link"
           >
             {item.label}
           </Link>
         ))}
-        {alternate ? <ItemLink item={alternate} className="ds-nav py-1" /> : null}
+        {alternate ? (
+          <ItemLink item={alternate} className={alternate.tone === 'whatsapp' ? whatsappClass : 'ds-nav site-nav-link'} />
+        ) : null}
         {action ? <ItemLink item={action} className="ds-btn ds-button" /> : null}
       </nav>
       <button
         ref={buttonRef}
         type="button"
-        className="ds-btn ds-btn-outline ds-btn-sm ds-button lg:hidden"
+        className="site-nav-toggle ds-btn ds-btn-outline ds-button"
         aria-expanded={open}
         aria-controls={menuId}
         onClick={() => setOpen((value) => !value)}
       >
         {open ? <X className="size-4" aria-hidden="true" /> : <Menu className="size-4" aria-hidden="true" />}
-        {open ? 'Close' : 'Menu'}
+        <span>{open ? 'Close' : 'Menu'}</span>
       </button>
       {open ? (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <button type="button" className="absolute inset-0 bg-navy/50" aria-label="Close menu" onClick={closeMenu} />
-          <nav
-            ref={drawerRef}
-            id={menuId}
-            className="absolute top-0 right-0 flex h-full w-[min(100%,22rem)] flex-col border-l border-line bg-paper px-6 py-6"
-            aria-label="Primary"
-          >
+        <div className="site-nav-drawer">
+          <button type="button" className="site-nav-backdrop" aria-label="Close menu" onClick={closeMenu} />
+          <nav ref={drawerRef} id={menuId} className="site-nav-panel" aria-label="Primary">
             <div className="flex items-center justify-between">
               <p className="ds-label">Menu</p>
               <button type="button" className="ds-btn ds-btn-quiet ds-btn-sm ds-button" onClick={closeMenu}>
+                <X className="size-4" aria-hidden="true" />
                 Close
               </button>
             </div>
@@ -127,7 +143,10 @@ export function Navigation({
                   <Link
                     href={item.href}
                     aria-current={isCurrent(pathname, item.href) ? 'page' : undefined}
-                    className={cn('ds-nav block py-4', isCurrent(pathname, item.href) && 'shadow-[inset_2px_0_0_var(--ds-gold)]')}
+                    className={cn(
+                      'ds-nav block py-4',
+                      isCurrent(pathname, item.href) && 'shadow-[inset_3px_0_0_var(--ds-gold)]',
+                    )}
                     onClick={closeMenu}
                   >
                     {item.label}
@@ -136,12 +155,18 @@ export function Navigation({
               ))}
             </ul>
             <div className="mt-auto flex flex-col gap-3 pt-8">
-              {alternate ? <ItemLink item={alternate} className="ds-btn ds-btn-outline ds-button w-full" onClick={closeMenu} /> : null}
+              {alternate ? (
+                <ItemLink
+                  item={alternate}
+                  className={alternate.tone === 'whatsapp' ? `${whatsappClass} w-full` : 'ds-btn ds-btn-outline ds-button w-full'}
+                  onClick={closeMenu}
+                />
+              ) : null}
               {action ? <ItemLink item={action} className="ds-btn ds-button w-full" onClick={closeMenu} /> : null}
             </div>
           </nav>
         </div>
       ) : null}
-    </>
+    </div>
   );
 }

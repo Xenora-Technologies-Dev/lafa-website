@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 import { JsonLd } from '@/components/layout/json-ld';
 import { SiteFooter } from '@/components/layout/site-footer';
 import { SiteHeader } from '@/components/layout/site-header';
+import { WhatsAppFab } from '@/components/layout/whatsapp-fab';
+import { whatsappAction } from '@/lib/contact';
 import { contactFacts, COMPANY, siteOrigin } from '@/lib/site';
 
 function organizationJsonLd() {
@@ -24,6 +26,7 @@ function organizationJsonLd() {
 }
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
+  const chat = whatsappAction();
   return (
     <div className="flex min-h-screen flex-col">
       <a
@@ -37,6 +40,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <SiteFooter />
+      <WhatsAppFab href={chat.href} external={chat.external} />
       <JsonLd data={organizationJsonLd()} />
     </div>
   );

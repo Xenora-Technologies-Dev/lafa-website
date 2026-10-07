@@ -120,7 +120,7 @@ export function ContactForm({ interest }: { interest: string }) {
         </Label>
         <Textarea id="message" name="message" required rows={6} />
       </div>
-      <Button type="submit" disabled={status === 'sending'}>
+      <Button type="submit" disabled={status === 'sending'} className="w-full sm:w-auto">
         {status === 'sending' ? 'Sending…' : 'Send enquiry'}
       </Button>
       {status === 'local' ? (

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PartnerCta } from '@/components/home/partner-cta';
+import { SupplyNotes } from '@/components/home/supply-notes';
 import { Container } from '@/components/layout/container';
 import { ImageBlock } from '@/components/system/image-block';
 import { PageHeader } from '@/components/sections/page-header';
@@ -60,6 +61,7 @@ export default async function ExportPage() {
           </ul>
         </div>
       </Container>
+      <SupplyNotes />
       <PartnerCta />
     </>
   );

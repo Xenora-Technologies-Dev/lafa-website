@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
 import { Footer } from '@/components/system/footer';
-import { confirmedChannels, whatsappHref } from '@/lib/contact';
+import { confirmedChannels, whatsappAction } from '@/lib/contact';
 import { listProductCategories, productListHref } from '@/lib/products';
 import { COMPANY, footerNav } from '@/lib/site';
 import { socialLinks } from '@/lib/site-facts';
@@ -8,7 +9,7 @@ import { socialLinks } from '@/lib/site-facts';
 export async function SiteFooter() {
   const categories = await listProductCategories();
   const channels = confirmedChannels();
-  const chat = whatsappHref();
+  const chat = whatsappAction();
   const year = new Date().getFullYear();
   const email = channels.find((channel) => channel.label === 'Email');
   const others = channels.filter((channel) => channel.label !== 'Email');
@@ -30,14 +31,19 @@ export async function SiteFooter() {
               </a>
             </p>
           ) : null}
-          {chat ? (
-            <p className="ds-small">
-              WhatsApp:{' '}
-              <a className="ds-accent-text" href={chat} target="_blank" rel="noopener noreferrer">
-                Message the desk
+          <p className="pt-3">
+            {chat.external ? (
+              <a href={chat.href} className="ds-btn ds-btn-wa ds-btn-sm ds-button" target="_blank" rel="noopener noreferrer">
+                <WhatsAppMark className="size-4" />
+                WhatsApp enquiry
               </a>
-            </p>
-          ) : null}
+            ) : (
+              <Link href={chat.href} className="ds-btn ds-btn-wa ds-btn-sm ds-button">
+                <WhatsAppMark className="size-4" />
+                WhatsApp enquiry
+              </Link>
+            )}
+          </p>
           {others.map((channel) => (
             <p key={channel.label} className="ds-small">
               {channel.label}: {channel.href ? <a href={channel.href}>{channel.value}</a> : channel.value}

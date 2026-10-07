@@ -7,6 +7,7 @@ export const primaryNav = [
   { href: '/products', label: 'Products' },
   { href: '/export', label: 'Export' },
   { href: '/about', label: 'About' },
+  { href: '/insights', label: 'Insights' },
   { href: '/contact', label: 'Contact' },
 ] as const;
 

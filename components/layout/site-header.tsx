@@ -1,14 +1,14 @@
 import { Header } from '@/components/system/header';
-import { whatsappHref } from '@/lib/contact';
+import { whatsappAction } from '@/lib/contact';
 import { primaryNav } from '@/lib/site';
 
 export function SiteHeader() {
-  const chat = whatsappHref();
+  const chat = whatsappAction();
   return (
     <Header
       items={primaryNav}
       action={{ href: '/contact', label: 'Enquire' }}
-      alternate={chat ? { href: chat, label: 'WhatsApp', external: true } : undefined}
+      alternate={{ href: chat.href, label: 'WhatsApp', external: chat.external, tone: 'whatsapp' }}
     />
   );
 }

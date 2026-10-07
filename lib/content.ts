@@ -32,6 +32,25 @@ export const capabilities = [
   },
 ] as const;
 
+export const supplyNotes = [
+  {
+    title: 'Product and pack',
+    text: 'Name the line, and the pack if you know it. If the exact item is not listed, name the category and the specification you need.',
+  },
+  {
+    title: 'Volume',
+    text: 'State the quantity for the shipment. The desk quotes against that volume, not against a published price.',
+  },
+  {
+    title: 'Destination market',
+    text: 'Say where the goods are going. Availability is checked for that trade. Nothing on this site is a standing offer.',
+  },
+  {
+    title: 'Who is buying',
+    text: 'Wholesalers, retail buyers, and hotel, restaurant, and catering procurement. This desk does not take consumer orders.',
+  },
+] as const;
+
 export const enquirySteps = [
   {
     title: 'Name the product',

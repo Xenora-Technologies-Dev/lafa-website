@@ -13,6 +13,14 @@ export function whatsappHref(extra?: string) {
   return `https://wa.me/${digits}?text=${encodeURIComponent(line)}`;
 }
 
+/** WhatsApp chat when a number is configured; otherwise the enquiry form. */
+export function whatsappAction(extra?: string) {
+  const href = whatsappHref(extra);
+  if (href) return { href, external: true as const };
+  const contact = extra ? `/contact?product=${encodeURIComponent(extra)}` : '/contact';
+  return { href: contact, external: false as const };
+}
+
 export function confirmedChannels() {
   return [
     contactFacts.phone ? { label: 'Phone', value: contactFacts.phone, href: `tel:${contactFacts.phone.replace(/\s/g, '')}` } : null,

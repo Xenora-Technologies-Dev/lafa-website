@@ -67,6 +67,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -482,4 +483,294 @@ body {
 .insight-body a {
   color: var(--ds-navy);
   text-underline-offset: 3px;
+}
+
+/* Header. The link bar is shown from the CSS breakpoint below,
+   independent of utility class order, so desktop widths always get the menu. */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--ds-neutral);
+  background: var(--ds-offwhite);
+  transition: box-shadow 180ms ease;
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 10px 28px rgba(12, 35, 64, 0.08);
+}
+
+.site-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 0;
+  min-height: 4.75rem;
+  padding-block: 0.65rem;
+}
+
+.site-logo {
+  flex: 0 0 auto;
+}
+
+.site-logo img {
+  width: 4.5rem;
+  height: auto;
+}
+
+@media (min-width: 640px) {
+  .site-logo img {
+    width: 5rem;
+  }
+}
+
+.site-header-tools {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.site-nav-desktop {
+  display: none;
+  align-items: center;
+  gap: clamp(0.7rem, 1.4vw, 1.35rem);
+  min-width: 0;
+}
+
+.site-nav-link {
+  padding-block: 0.35rem;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.site-nav-link:hover {
+  color: var(--ds-gold-ink);
+}
+
+.site-nav-toggle {
+  flex: 0 0 auto;
+}
+
+.site-nav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+.site-nav-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: color-mix(in srgb, var(--ds-navy) 52%, transparent);
+  cursor: pointer;
+}
+
+.site-nav-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  height: 100%;
+  width: min(100%, 22rem);
+  flex-direction: column;
+  overflow-y: auto;
+  border-left: 1px solid var(--ds-neutral);
+  background: var(--ds-offwhite);
+  padding: 1.5rem;
+  animation: ds-drawer 0.28s ease;
+}
+
+@media (min-width: 960px) {
+  .site-nav-desktop {
+    display: flex;
+  }
+
+  .site-nav-toggle,
+  .site-nav-drawer {
+    display: none;
+  }
+}
+
+.ds-btn-wa {
+  background: #128c7e;
+  color: #fff;
+}
+
+.ds-btn-wa:hover {
+  background: #0c6e63;
+}
+
+.ds-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 1.25rem;
+}
+
+.ds-card {
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.ds-card:hover {
+  border-color: var(--ds-gold);
+  box-shadow: 0 12px 28px rgba(12, 35, 64, 0.06);
+  transform: translateY(-3px);
+}
+
+.ds-frame {
+  overflow: hidden;
+}
+
+.ds-frame img {
+  transition: transform 0.6s ease;
+}
+
+.group:hover .ds-frame img,
+.ds-card:hover .ds-frame img {
+  transform: scale(1.045);
+}
+
+.ds-chip-row {
+  display: flex;
+  gap: 0.75rem 1.25rem;
+  margin: 0;
+  padding: 0.25rem 0 0.85rem;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--ds-neutral);
+  list-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  .ds-chip-row {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+.wa-fab {
+  position: fixed;
+  z-index: 35;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 3.5rem;
+  max-width: calc(100vw - 2rem);
+  padding: 0.4rem 1.05rem 0.4rem 0.4rem;
+  border-radius: 999px;
+  background: #128c7e;
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(12, 35, 64, 0.22);
+  transition: transform 180ms ease, background-color 180ms ease, opacity 180ms ease;
+}
+
+.wa-fab:hover {
+  background: #0c6e63;
+  transform: translateY(-2px);
+}
+
+.wa-fab.is-tucked {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+}
+
+.wa-fab-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 999px;
+  background: #25d366;
+  color: #075e54;
+  animation: wa-pulse 2.6s ease-out infinite;
+}
+
+.wa-fab-label {
+  padding-right: 0.15rem;
+}
+
+.site-footer-legal {
+  padding-bottom: 5.5rem;
+}
+
+@media (min-width: 768px) {
+  .site-footer-legal {
+    padding-bottom: 1rem;
+  }
+}
+
+@keyframes ds-drawer {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ds-rise {
+  from {
+    opacity: 0.15;
+    transform: translateY(1.1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ds-rise {
+      animation: ds-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 18%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav-panel,
+  .wa-fab,
+  .wa-fab-icon,
+  .ds-card,
+  .ds-frame img {
+    animation: none;
+    transition: none;
+  }
+
+  .ds-card:hover,
+  .wa-fab:hover,
+  .group:hover .ds-frame img,
+  .ds-card:hover .ds-frame img {
+    transform: none;
+  }
 }
