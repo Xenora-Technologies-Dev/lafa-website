@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LAFA enquiry form</title>
+  </head>
+  <body>
+    <!--
+      Static HTML form for Netlify Forms detection at build time.
+      Field names must match components/contact/contact-form.tsx.
+      The React form posts here with form-name=enquiry.
+    -->
+    <form
+      name="enquiry"
+      method="POST"
+      action="/__forms.html"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="enquiry" />
+      <p>
+        <label>
+          Do not fill this in
+          <input name="bot-field" />
+        </label>
+      </p>
+      <p>
+        <label>Name <input type="text" name="name" /></label>
+      </p>
+      <p>
+        <label>Company <input type="text" name="company" /></label>
+      </p>
+      <p>
+        <label>Email <input type="email" name="email" /></label>
+      </p>
+      <p>
+        <label>Phone <input type="tel" name="phone" /></label>
+      </p>
+      <p>
+        <label>Country / market <input type="text" name="market" /></label>
+      </p>
+      <p>
+        <label>Product or category of interest <input type="text" name="interest" /></label>
+      </p>
+      <p>
+        <label>Message <textarea name="message"></textarea></label>
+      </p>
+    </form>
+  </body>
+</html>

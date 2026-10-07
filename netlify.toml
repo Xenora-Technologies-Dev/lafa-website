@@ -1,0 +1,37 @@
+# LAFA General Trading — Netlify Free
+# Next.js route handlers deploy as Netlify Functions through the OpenNext adapter.
+# Do not pin @netlify/plugin-nextjs. Netlify installs and updates the adapter.
+# Do not add an SPA fallback redirect. It would swallow server routes.
+# Do not add a webhook that rebuilds the site on every content save.
+# A production deploy spends Netlify credits. Published content is read from Neon.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000"
+
+# Admin is not linked from the public site. The password is the access control.
+# Keep noindex headers even though robots.txt no longer Disallows /admin.
+[[headers]]
+  for = "/admin"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Contact form email notifications are intentionally not configured.
+# Add one in the Netlify UI only after LAFA names the inbox.

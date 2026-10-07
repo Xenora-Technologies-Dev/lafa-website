@@ -1,0 +1,485 @@
+@import 'tailwindcss';
+
+/*
+  LAFA Trading design tokens.
+  Deep navy carries the interface. Gold is an accent only:
+  rules, active marks, and the occasional highlighted action.
+*/
+
+:root {
+  --ds-navy: #0c2340;
+  --ds-navy-dark: #071525;
+  --ds-navy-hover: #1a3658;
+  --ds-gold: #c4a46a;
+  --ds-gold-ink: #5c4520;
+  --ds-gold-on-dark: #e4d2a8;
+  --ds-warm: #f7f4ef;
+  --ds-offwhite: #fcfbf8;
+  --ds-neutral: #e4dfd6;
+  --ds-neutral-soft: #f1ece4;
+  --ds-charcoal: #1c1c1c;
+  --ds-ink-soft: #4e4a45;
+  --ds-on-navy: #f3efe6;
+  --ds-on-navy-soft: #d9d3c8;
+  --ds-danger: #7a2e2e;
+  --ds-radius: 2px;
+  --ds-measure: 42rem;
+  --ds-container: 72rem;
+  --ds-container-wide: 80rem;
+  --ds-focus: 2px solid var(--ds-navy);
+  --ds-focus-on-dark: 2px solid var(--ds-gold-on-dark);
+}
+
+@theme inline {
+  --font-sans: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, 'Times New Roman', serif;
+  --color-background: var(--ds-warm);
+  --color-foreground: var(--ds-charcoal);
+  --color-card: var(--ds-offwhite);
+  --color-card-foreground: var(--ds-charcoal);
+  --color-primary: var(--ds-navy);
+  --color-primary-foreground: var(--ds-warm);
+  --color-secondary: var(--ds-neutral-soft);
+  --color-secondary-foreground: var(--ds-navy);
+  --color-muted: var(--ds-neutral-soft);
+  --color-muted-foreground: var(--ds-ink-soft);
+  --color-accent: var(--ds-gold);
+  --color-accent-foreground: var(--ds-navy);
+  --color-destructive: var(--ds-danger);
+  --color-border: var(--ds-neutral);
+  --color-input: var(--ds-neutral);
+  --color-ring: var(--ds-navy);
+  --color-navy: var(--ds-navy);
+  --color-navy-deep: var(--ds-navy-dark);
+  --color-navy-soft: var(--ds-navy-hover);
+  --color-gold: var(--ds-gold);
+  --color-gold-deep: var(--ds-gold-ink);
+  --color-ivory: var(--ds-warm);
+  --color-paper: var(--ds-offwhite);
+  --color-line: var(--ds-neutral);
+  --color-charcoal: var(--ds-charcoal);
+  --color-stone: var(--ds-ink-soft);
+  --color-foam: var(--ds-on-navy);
+  --radius-sm: var(--ds-radius);
+  --radius-md: var(--ds-radius);
+  --radius-lg: var(--ds-radius);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--ds-warm);
+  color: var(--ds-charcoal);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #e7d3a4;
+  color: var(--ds-navy);
+}
+
+:focus-visible {
+  outline: var(--ds-focus);
+  outline-offset: 3px;
+}
+
+.on-dark :focus-visible {
+  outline: var(--ds-focus-on-dark);
+}
+
+@keyframes ds-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ds-fade {
+  animation: ds-fade 0.55s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ds-fade {
+    animation: none;
+  }
+}
+
+/* Typography */
+
+.ds-display,
+.ds-h1,
+.ds-h2,
+.ds-h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--ds-navy);
+  letter-spacing: -0.025em;
+}
+
+.ds-display {
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.ds-h1 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.12;
+}
+
+.ds-h2 {
+  font-size: clamp(1.625rem, 2.4vw, 2.125rem);
+  line-height: 1.2;
+}
+
+.ds-h3 {
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+  line-height: 1.3;
+}
+
+.ds-body {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ds-charcoal);
+}
+
+.ds-small {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ds-ink-soft);
+}
+
+.ds-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--ds-gold-ink);
+}
+
+.ds-nav {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  color: var(--ds-navy);
+}
+
+.ds-nav[aria-current='page'] {
+  color: var(--ds-navy);
+  box-shadow: inset 0 -2px 0 var(--ds-gold);
+}
+
+.ds-button {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.on-dark :is(.ds-display, .ds-h1, .ds-h2, .ds-h3) {
+  color: var(--ds-on-navy);
+}
+
+.on-dark :is(.ds-body, .ds-small) {
+  color: var(--ds-on-navy-soft);
+}
+
+.on-dark .ds-label,
+.on-dark .ds-accent-text {
+  color: var(--ds-gold-on-dark);
+}
+
+.on-dark a.ds-small:hover,
+.on-dark .ds-accent-text:hover {
+  color: var(--ds-on-navy);
+}
+
+.on-dark .ds-btn-outline {
+  border-color: var(--ds-on-navy);
+  background: transparent;
+  color: var(--ds-on-navy);
+}
+
+.on-dark .ds-btn-outline:hover {
+  background: var(--ds-on-navy);
+  color: var(--ds-navy);
+}
+
+.ds-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--ds-neutral);
+  border-bottom: 1px solid var(--ds-neutral);
+}
+
+@media (min-width: 640px) {
+  .ds-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ds-meta-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--ds-ink-soft);
+}
+
+.ds-meta-value {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ds-navy);
+}
+
+/* Layout */
+
+.ds-container {
+  width: 100%;
+  max-width: var(--ds-container);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.ds-container-narrow {
+  max-width: var(--ds-measure);
+}
+
+.ds-container-wide {
+  max-width: var(--ds-container-wide);
+}
+
+@media (min-width: 640px) {
+  .ds-container {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ds-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .ds-container:not(.ds-container-narrow) {
+    max-width: var(--ds-container-wide);
+  }
+}
+
+.ds-section {
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+}
+
+/* Controls */
+
+.ds-control {
+  width: 100%;
+  min-height: 2.75rem;
+  border: 1px solid var(--ds-neutral);
+  border-radius: var(--ds-radius);
+  background: var(--ds-offwhite);
+  color: var(--ds-charcoal);
+  padding: 0.625rem 0.75rem;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.ds-control::placeholder {
+  color: color-mix(in srgb, var(--ds-ink-soft) 70%, transparent);
+}
+
+.ds-control:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--ds-radius);
+  background: var(--ds-navy);
+  color: var(--ds-warm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.ds-btn:hover {
+  background: var(--ds-navy-hover);
+}
+
+.ds-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.ds-btn-sm {
+  min-height: 2.25rem;
+  padding-inline: 0.75rem;
+}
+
+.ds-btn-lg {
+  min-height: 3rem;
+  padding-inline: 1.5rem;
+}
+
+.ds-btn-accent {
+  background: var(--ds-gold);
+  color: var(--ds-navy);
+}
+
+.ds-btn-accent:hover {
+  background: #b8956a;
+}
+
+.ds-btn-outline {
+  border-color: var(--ds-navy);
+  background: transparent;
+  color: var(--ds-navy);
+}
+
+.ds-btn-outline:hover {
+  background: var(--ds-navy);
+  color: var(--ds-warm);
+}
+
+.ds-btn-quiet {
+  background: transparent;
+  color: var(--ds-navy);
+}
+
+.ds-btn-quiet:hover {
+  background: color-mix(in srgb, var(--ds-navy) 6%, transparent);
+}
+
+.ds-btn-danger {
+  background: var(--ds-danger);
+  color: var(--ds-offwhite);
+}
+
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid transparent;
+  border-radius: var(--ds-radius);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.ds-badge-navy {
+  background: var(--ds-navy);
+  color: var(--ds-warm);
+}
+
+.ds-badge-neutral {
+  border-color: var(--ds-neutral);
+  background: var(--ds-warm);
+  color: var(--ds-ink-soft);
+}
+
+.ds-badge-line {
+  border-color: var(--ds-gold);
+  background: transparent;
+  color: var(--ds-navy);
+}
+
+/* Surfaces used by the system components */
+
+.ds-rule {
+  border: 0;
+  border-top: 1px solid var(--ds-neutral);
+}
+
+.ds-frame {
+  background: var(--ds-neutral-soft);
+}
+
+.ds-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--ds-neutral-soft);
+}
+
+.insight-body > * + * {
+  margin-top: 1rem;
+}
+
+.insight-body h2,
+.insight-body h3 {
+  margin-top: 2rem;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--ds-navy);
+  letter-spacing: -0.02em;
+}
+
+.insight-body h2 {
+  font-size: clamp(1.625rem, 2.4vw, 2.125rem);
+}
+
+.insight-body h3 {
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+}
+
+.insight-body p,
+.insight-body li {
+  line-height: 1.7;
+}
+
+.insight-body ul,
+.insight-body ol {
+  padding-left: 1.25rem;
+}
+
+.insight-body ul {
+  list-style: disc;
+}
+
+.insight-body ol {
+  list-style: decimal;
+}
+
+.insight-body a {
+  color: var(--ds-navy);
+  text-underline-offset: 3px;
+}

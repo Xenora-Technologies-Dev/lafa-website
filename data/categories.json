@@ -1,0 +1,101 @@
+[
+  {
+    "id": "category-fruit-and-vegetables",
+    "title": "Fruit & vegetables",
+    "slug": "fruit-and-vegetables",
+    "description": "Wholesale of fruit and vegetables.",
+    "sortOrder": 1,
+    "weight": "primary",
+    "licenceCode": "4630.01"
+  },
+  {
+    "id": "category-dairy",
+    "title": "Dairy",
+    "slug": "dairy",
+    "description": "Wholesale of dairy products.",
+    "sortOrder": 2,
+    "weight": "primary",
+    "licenceCode": "4630.02"
+  },
+  {
+    "id": "category-eggs",
+    "title": "Eggs",
+    "slug": "eggs",
+    "description": "Wholesale of eggs and egg products.",
+    "sortOrder": 3,
+    "weight": "primary",
+    "licenceCode": "4630.03"
+  },
+  {
+    "id": "category-edible-oils-and-fats",
+    "title": "Edible oils & fats",
+    "slug": "edible-oils-and-fats",
+    "description": "Wholesale of edible oils and fats of animal or vegetable origin.",
+    "sortOrder": 4,
+    "weight": "primary",
+    "licenceCode": "4630.04"
+  },
+  {
+    "id": "category-meat",
+    "title": "Meat",
+    "slug": "meat",
+    "description": "Wholesale of meat and meat products.",
+    "sortOrder": 5,
+    "weight": "primary",
+    "licenceCode": "4630.05"
+  },
+  {
+    "id": "category-fish-and-seafood",
+    "title": "Fish & seafood",
+    "slug": "fish-and-seafood",
+    "description": "Wholesale of fishery products.",
+    "sortOrder": 6,
+    "weight": "primary",
+    "licenceCode": "4630.06"
+  },
+  {
+    "id": "category-sugar-and-confectionery",
+    "title": "Sugar & confectionery",
+    "slug": "sugar-and-confectionery",
+    "description": "Wholesale of sugar, chocolate and sugar confectionery.",
+    "sortOrder": 7,
+    "weight": "primary",
+    "licenceCode": "4630.07"
+  },
+  {
+    "id": "category-bakery",
+    "title": "Bakery",
+    "slug": "bakery",
+    "description": "Wholesale of bakery products.",
+    "sortOrder": 8,
+    "weight": "primary",
+    "licenceCode": "4630.08"
+  },
+  {
+    "id": "category-beverages",
+    "title": "Beverages",
+    "slug": "beverages",
+    "description": "Wholesale of beverages.",
+    "sortOrder": 9,
+    "weight": "primary",
+    "licenceCode": "4630.09"
+  },
+  {
+    "id": "category-coffee-tea-cocoa-spices",
+    "title": "Coffee, tea, cocoa & spices",
+    "slug": "coffee-tea-cocoa-spices",
+    "description": "Wholesale of coffee, tea, cocoa and spices.",
+    "sortOrder": 10,
+    "weight": "primary",
+    "licenceCode": "4630.10"
+  },
+  {
+    "id": "category-general-wholesale",
+    "title": "General wholesale",
+    "slug": "general-wholesale",
+    "description": "LAFA can source a variety of non-food goods under its general trading licence. Food is the focus of this site.",
+    "sortOrder": 11,
+    "weight": "secondary",
+    "licenceCode": "4690.00"
+  }
+]
