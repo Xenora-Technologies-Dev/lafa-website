@@ -553,17 +553,25 @@ body {
 }
 
 .site-logo {
+  position: relative;
+  display: block;
   flex: 0 0 auto;
+  width: 9.25rem;
+  height: 6.4rem;
+  overflow: hidden;
 }
 
 .site-logo img {
-  width: 4.5rem;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
 }
 
 @media (min-width: 640px) {
-  .site-logo img {
-    width: 5rem;
+  .site-logo {
+    width: 11rem;
+    height: 7.6rem;
   }
 }
 
@@ -995,13 +1003,8 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .js .reveal-item {
-    opacity: 0;
-    transform: translateY(1.15rem);
-  }
-
   .js .hero-visual {
-    clip-path: inset(8% 8% 8% 8%);
+    clip-path: inset(0% 0% 0% 0%);
   }
 }
 

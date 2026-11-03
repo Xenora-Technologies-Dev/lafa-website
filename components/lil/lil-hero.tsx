@@ -13,11 +13,9 @@ export function LilHero() {
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add(MOTION_QUERY, () => {
-      const timeline = gsap.timeline();
-      timeline.fromTo('.lil-logo', { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 1.35, ease: 'power2.inOut' });
-      timeline.from('.lil-rise', { y: 18, opacity: 0, stagger: 0.08, duration: 0.6, ease: 'power2.out' }, 0.35);
+      gsap.from('.lil-rise', { y: 14, duration: 0.7, stagger: 0.06, ease: 'power2.out', clearProps: 'transform' });
       gsap.to('.lil-butterfly', { y: -12, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-      gsap.to('.lil-spark', { opacity: 0.2, duration: 1.1, stagger: 0.25, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      gsap.to('.lil-spark', { opacity: 0.45, duration: 1.1, stagger: 0.25, yoyo: true, repeat: -1, ease: 'sine.inOut' });
     });
     return () => mm.revert();
   }, { scope: ref });

@@ -27,7 +27,7 @@ export function HomeHero() {
         split = SplitText.create('.hero-title', { type: 'lines', mask: 'lines', aria: 'auto' });
         const timeline = gsap.timeline();
         timeline.from(split.lines, { yPercent: 100, duration: 0.9, stagger: 0.08, ease: 'power3.out' }, 0);
-        timeline.from('.hero-rise', { y: 18, opacity: 0, stagger: 0.08, duration: 0.6, ease: 'power2.out' }, 0.35);
+        timeline.from('.hero-rise', { y: 18, duration: 0.6, stagger: 0.08, ease: 'power2.out', clearProps: 'transform' }, 0.35);
         timeline.fromTo(
           '.hero-visual',
           { clipPath: 'inset(8% 8% 8% 8%)' },

@@ -14,9 +14,8 @@ export function LilTeaser() {
     mm.add(MOTION_QUERY, () => {
       gsap.fromTo(
         '.lil-chip',
-        { opacity: 0, y: 16 },
+        { y: 16 },
         {
-          opacity: 1,
           y: 0,
           stagger: 0.06,
           duration: 0.55,

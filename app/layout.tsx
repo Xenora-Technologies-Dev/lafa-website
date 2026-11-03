@@ -1,34 +1,45 @@
 import type { ReactNode } from 'react';
 import type { Metadata, Viewport } from 'next';
-import { Cormorant_Garamond, Newsreader, Source_Sans_3 } from 'next/font/google';
-import Script from 'next/script';
+import localFont from 'next/font/local';
 import { COMPANY, metadataBaseUrl } from '@/lib/site';
 import './globals.css';
 
-const sans = Source_Sans_3({
-  subsets: ['latin'],
-  weight: ['400', '600'],
+/**
+ * Self-hosted faces. A failed next/font/google download leaves only a
+ * metric-adjusted Arial fallback, and Chrome draws garbage glyphs when
+ * ascent-override is above 100%. adjustFontFallback stays off so a missing
+ * file falls through to the system font instead.
+ */
+const sans = localFont({
+  src: [
+    { path: '../fonts/source-sans-3-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/source-sans-3-600-normal.woff2', weight: '600', style: 'normal' },
+  ],
   variable: '--font-source-sans',
   display: 'swap',
-  adjustFontFallback: true,
+  adjustFontFallback: false,
 });
 
-const serif = Newsreader({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  style: ['normal', 'italic'],
+const serif = localFont({
+  src: [
+    { path: '../fonts/newsreader-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/newsreader-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../fonts/newsreader-400-italic.woff2', weight: '400', style: 'italic' },
+    { path: '../fonts/newsreader-500-italic.woff2', weight: '500', style: 'italic' },
+  ],
   variable: '--font-newsreader',
   display: 'swap',
-  adjustFontFallback: true,
+  adjustFontFallback: false,
 });
 
-const lil = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['500'],
-  style: ['normal', 'italic'],
+const lil = localFont({
+  src: [
+    { path: '../fonts/cormorant-garamond-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../fonts/cormorant-garamond-500-italic.woff2', weight: '500', style: 'italic' },
+  ],
   variable: '--font-cormorant',
   display: 'swap',
-  adjustFontFallback: true,
+  adjustFontFallback: false,
 });
 
 export const viewport: Viewport = {
@@ -69,12 +80,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable} ${lil.variable}`}>
-      <body className="min-h-screen bg-ivory font-sans text-charcoal antialiased">
-        <Script id="js-class" strategy="beforeInteractive">
-          {`document.documentElement.classList.add('js')`}
-        </Script>
-        {children}
-      </body>
+      <body className="min-h-screen bg-ivory font-sans text-charcoal antialiased">{children}</body>
     </html>
   );
 }

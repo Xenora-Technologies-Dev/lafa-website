@@ -18,9 +18,8 @@ export function CategoryMosaic({ categories }: { categories: ProductCategory[] }
       gsap.utils.toArray<HTMLElement>('.mosaic-card').forEach((card, index) => {
         gsap.fromTo(
           card,
-          { opacity: 0, y: 28 },
+          { y: 28 },
           {
-            opacity: 1,
             y: 0,
             duration: 0.7,
             delay: (index % 4) * 0.08,

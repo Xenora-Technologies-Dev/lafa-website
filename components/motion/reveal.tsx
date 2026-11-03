@@ -13,9 +13,8 @@ export function Reveal({ children, className, selector = '.reveal-item' }: { chi
       items.forEach((item) => {
         gsap.fromTo(
           item,
-          { opacity: 0, y: 22 },
+          { y: 22 },
           {
-            opacity: 1,
             y: 0,
             duration: 0.7,
             ease: 'power2.out',

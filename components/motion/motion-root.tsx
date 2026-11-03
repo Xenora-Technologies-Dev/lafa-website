@@ -7,6 +7,7 @@ export function MotionRoot({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    document.documentElement.classList.add('js');
     const header = ref.current?.querySelector<HTMLElement>('.site-header');
     const mm = gsap.matchMedia();
 

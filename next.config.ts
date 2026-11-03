@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   serverExternalPackages: ['imagekit'],
   images: {
+    qualities: [75, 92],
     remotePatterns: [{ protocol: 'https', hostname: 'ik.imagekit.io', pathname: '/**' }],
   },
   async redirects() {
