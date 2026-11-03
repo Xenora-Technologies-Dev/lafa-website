@@ -1,21 +1,27 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { PartnerCta } from '@/components/home/partner-cta';
+import { ClosingBand } from '@/components/home/closing-band';
+import { ArtImage } from '@/components/media/art-image';
 import { Container } from '@/components/layout/container';
-import { ImageBlock } from '@/components/system/image-block';
 import { PageHeader } from '@/components/sections/page-header';
 import { EnquiryProcess } from '@/components/sections/enquiry-process';
-import { homeMedia } from '@/lib/home';
+import { foodMedia } from '@/lib/home';
 import { listProductCategories, productListHref } from '@/lib/products';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = pageMeta({
   title: 'Trade',
   description:
-    'Import and export from Dubai by LAFA General Trading. Tell us the product, the market, and the quantity. We reply with availability and a quotation.',
+    'Import and export from Dubai by LAFA General Trading. Name the product, the destination, and the quantity. Availability and price are confirmed in the reply.',
   path: '/export',
-  image: { url: homeMedia.trade.src, alt: homeMedia.trade.alt },
+  image: { url: foodMedia.portAerial, alt: foodMedia.portAerialAlt },
 });
+
+const documents = [
+  { title: 'The goods', text: 'Product or category, and the pack size if you know it.' },
+  { title: 'The movement', text: 'Whether the shipment is into the UAE, out of Dubai, or both, and the destination market.' },
+  { title: 'The terms to quote', text: 'Any Incoterm you want the quotation to use. The documents for that shipment are confirmed with the reply.' },
+] as const;
 
 export default async function ExportPage() {
   const categories = await listProductCategories();
@@ -25,29 +31,53 @@ export default async function ExportPage() {
         <PageHeader
           eyebrow="Trade"
           title="Import and export, arranged from Dubai."
-          lede="LAFA sources goods and supplies them to business buyers in the United Arab Emirates and in other markets. Name the product, the destination, and the quantity."
+          lede="Name the product, the destination, and the quantity. We reply with availability and a quotation. Destination markets are confirmed with each enquiry, not published here as a fixed list."
         />
         <div className="mt-12 grid items-start gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-          <ImageBlock
-            src={homeMedia.trade.src}
-            alt={homeMedia.trade.alt}
-            ratio="16 / 9"
-            fit="cover"
-            priority
-            sizes="(min-width: 1024px) 48rem, 100vw"
-          />
+          <figure className="m-0">
+            <div className="relative aspect-video overflow-hidden">
+              <ArtImage
+                desktop={foodMedia.portAerial}
+                alt={foodMedia.portAerialAlt}
+                priority
+                className="h-full w-full object-cover"
+                sizes="(min-width: 1024px) 48rem, 100vw"
+              />
+            </div>
+            <figcaption className="campaign-note mt-3">Campaign imagery</figcaption>
+          </figure>
           <div>
             <h2 className="ds-h3">What to include</h2>
-            <p className="ds-body mt-4">
-              An import or export enquiry should name the product, the pack if you know it, the volume, and the market. We reply with availability and a quotation.
-            </p>
-            <div className="mt-10">
-              <EnquiryProcess title="How a trade enquiry moves" />
-            </div>
+            <ul className="mt-6 space-y-5">
+              {documents.map((item, index) => (
+                <li key={item.title} className="border-t border-gold pt-4">
+                  <p className="ds-label">{String(index + 1).padStart(2, '0')}</p>
+                  <h3 className="ds-h3 mt-2">{item.title}</h3>
+                  <p className="ds-small mt-2">{item.text}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+        <div className="mt-16 grid gap-10 lg:grid-cols-2">
+          <figure className="m-0">
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <ArtImage desktop={foodMedia.container} alt={foodMedia.containerAlt} className="h-full w-full object-cover" sizes="(min-width: 1024px) 36rem, 100vw" />
+            </div>
+            <figcaption className="campaign-note mt-3">Campaign imagery</figcaption>
+          </figure>
+          <figure className="m-0">
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <ArtImage desktop={foodMedia.sourcing} alt={foodMedia.sourcingAlt} className="h-full w-full object-cover" sizes="(min-width: 1024px) 36rem, 100vw" />
+            </div>
+            <figcaption className="campaign-note mt-3">Campaign imagery</figcaption>
+          </figure>
+        </div>
+        <div className="mt-16">
+          <EnquiryProcess title="How a trade enquiry moves" />
+        </div>
         <div className="mt-16 border-t border-line pt-10">
-          <h2 className="ds-h3">Categories</h2>
+          <h2 className="ds-h3">Food categories</h2>
           <ul className="mt-6 grid gap-x-8 sm:grid-cols-2">
             {categories.map((category) => (
               <li key={category.slug} className="border-b border-line">
@@ -58,9 +88,14 @@ export default async function ExportPage() {
               </li>
             ))}
           </ul>
+          <p className="mt-8">
+            <Link href="/lil" className="ds-btn ds-btn-outline ds-button">
+              Lil by lafa
+            </Link>
+          </p>
         </div>
       </Container>
-      <PartnerCta />
+      <ClosingBand />
     </>
   );
 }
