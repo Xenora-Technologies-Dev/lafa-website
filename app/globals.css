@@ -586,7 +586,7 @@ body {
   animation: ds-drawer 0.28s ease;
 }
 
-@media (min-width: 720px) and (max-width: 1140px) {
+@media (min-width: 1024px) and (max-width: 1140px) {
   .site-nav-desktop {
     gap: 0.65rem;
   }
@@ -597,7 +597,7 @@ body {
   }
 }
 
-@media (min-width: 720px) {
+@media (min-width: 1024px) {
   .site-nav-desktop {
     display: flex;
     flex-shrink: 0;
@@ -716,12 +716,12 @@ body {
 }
 
 .site-footer-legal {
-  padding-bottom: 5.5rem;
+  padding-bottom: 1rem;
 }
 
-@media (min-width: 768px) {
-  .site-footer-legal {
-    padding-bottom: 1rem;
+@media (max-width: 767px) {
+  .site-has-wa .site-footer-legal {
+    padding-bottom: 5.5rem;
   }
 }
 

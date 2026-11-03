@@ -16,8 +16,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   const result = await queryProducts(params);
   const title = result.category ? result.category.title : 'Products';
   const description = result.category
-    ? `${result.category.summary} Wholesale lines from LAFA General Trading. No public prices.`
-    : 'Wholesale food products from LAFA General Trading in Dubai. Search the range, filter by category, and enquire. No public prices.';
+    ? `${result.category.summary} Supplied by LAFA General Trading. Prices are quoted on enquiry.`
+    : 'The trading range from LAFA General Trading in Dubai. Search the list, filter by category, and send an enquiry. Prices are quoted on enquiry.';
   const path = productListHref({
     category: result.q ? result.category?.slug : null,
     q: result.q || null,

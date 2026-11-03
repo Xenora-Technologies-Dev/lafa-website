@@ -29,11 +29,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: metadataBaseUrl(),
   title: {
-    default: 'Food wholesale in Dubai | LAFA General Trading',
+    default: 'General trading company in Dubai',
     template: '%s | LAFA General Trading',
   },
   description:
-    'LAFA General Trading is a Dubai company for food wholesale, sourcing, and import and export. Business buyers enquire for availability. No public prices and no cart.',
+    'LAFA General Trading is a general trading company based in Dubai, United Arab Emirates. We source goods and arrange wholesale supply, import, and export for business buyers.',
   applicationName: COMPANY,
   icons: { icon: '/logo.png', apple: '/logo.png' },
   openGraph: {

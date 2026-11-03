@@ -11,7 +11,7 @@ export function InsightsPreview({ posts }: { posts: Post[] }) {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="ds-label">Insights</p>
-            <h2 className="ds-h2 mt-3">Notes from the trade</h2>
+            <h2 className="ds-h2 mt-3">Notes on trade</h2>
           </div>
           <Link href="/insights" className="text-sm font-semibold text-navy hover:text-gold-deep">
             All insights

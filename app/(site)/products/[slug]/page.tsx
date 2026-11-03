@@ -29,14 +29,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (category) {
       return pageMeta({
         title: category.title,
-        description: `${category.summary} Wholesale lines from ${COMPANY}. No public prices.`,
+        description: `${category.summary} Supplied by ${COMPANY}. Prices are quoted on enquiry.`,
         path: productListHref({ category: category.slug }),
         image: { url: category.image.src, alt: category.image.alt },
       });
     }
     return { title: 'Product' };
   }
-  const description = product.seoDescription || `${product.shortDescription} Wholesale enquiry with ${COMPANY}. No public price.`;
+  const description = product.seoDescription || `${product.shortDescription} Enquire with ${COMPANY}. Prices are quoted on enquiry.`;
   const image = imageSrc(product.image);
   return pageMeta({
     title: product.seoTitle || product.name,
@@ -87,7 +87,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <h1 className="ds-h1 mt-3">{product.name}</h1>
             <p className="ds-body mt-5">{product.description}</p>
             <ProductSpecs product={product} />
-            <p className="ds-small mt-6">Price is quoted on enquiry. Nothing on this page is an order.</p>
+            <p className="ds-small mt-6">Price and availability are confirmed in our reply.</p>
             <div className="mt-6 flex flex-col gap-3 min-[480px]:flex-row min-[480px]:flex-wrap">
               <Link href={`/contact?product=${encodeURIComponent(product.name)}`} className="ds-btn ds-button w-full min-[480px]:w-auto">
                 Request an enquiry

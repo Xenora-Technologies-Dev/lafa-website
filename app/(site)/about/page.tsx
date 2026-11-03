@@ -1,20 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PartnerCta } from '@/components/home/partner-cta';
-import { SupplyNotes } from '@/components/home/supply-notes';
 import { Container } from '@/components/layout/container';
 import { BuyerPanel } from '@/components/sections/buyer-panel';
 import { EnquiryProcess } from '@/components/sections/enquiry-process';
 import { PageHeader } from '@/components/sections/page-header';
 import { Button } from '@/components/ui/button';
-import { FOOD_RANGE } from '@/lib/categories';
 import { capabilities } from '@/lib/content';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = pageMeta({
   title: 'About',
   description:
-    'LAFA General Trading is a Dubai company. The public site focuses on food wholesale, sourcing, and import and export for business buyers.',
+    'LAFA General Trading is a general trading company based in Dubai, United Arab Emirates. We arrange sourcing, wholesale supply, import, and export for business buyers.',
   path: '/about',
 });
 
@@ -22,21 +20,21 @@ export default function AboutPage() {
   return (
     <article>
       <Container className="py-16 sm:py-20">
-        <PageHeader eyebrow="About" title="A Dubai trading house, focused on food." />
+        <PageHeader eyebrow="About" title="A general trading company based in Dubai." />
         <div className="mt-8 max-w-3xl space-y-5 text-lg leading-8 text-charcoal">
           <p>
-            LAFA General Trading is a general trading company based in Dubai, United Arab Emirates. The work is international: sourcing, wholesale supply, and import and export. The focus of this website is food.
+            LAFA General Trading is a general trading company in Dubai, United Arab Emirates. We work with businesses that need goods sourced, supplied wholesale, or moved across borders.
           </p>
           <p>
-            The food range follows the wholesale activities on the trade licence: {FOOD_RANGE}. General wholesale of non-food goods sits under the same licence and is treated as secondary. This site stays with food.
+            Our work covers sourcing, wholesale supply, import into the UAE, and export to other markets. The catalogue on this site lists food wholesale lines — produce, dairy, oils, proteins, beverages, and related goods — together with general wholesale for other products. If a specification is not listed, name it in an enquiry.
           </p>
           <p>
-            Buyers deal with LAFA by enquiry. Name the product and the quantity. Prices are not published, and there is no cart. Availability is confirmed in the reply.
+            Supply is arranged enquiry by enquiry. Share the product, the quantity, and the market, and we confirm availability and price in our reply.
           </p>
         </div>
         <div className="mt-8 flex flex-col gap-3 min-[480px]:flex-row">
           <Button asChild className="w-full min-[480px]:w-auto">
-            <Link href="/products">See the food range</Link>
+            <Link href="/products">View the trading range</Link>
           </Button>
           <Button asChild variant="outline" className="w-full min-[480px]:w-auto">
             <Link href="/contact">Send an enquiry</Link>
@@ -55,7 +53,6 @@ export default function AboutPage() {
         </div>
       </Container>
       <BuyerPanel />
-      <SupplyNotes />
       <PartnerCta />
     </article>
   );

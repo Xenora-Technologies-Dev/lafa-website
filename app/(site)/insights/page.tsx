@@ -11,7 +11,7 @@ export const revalidate = 60;
 
 export const metadata: Metadata = pageMeta({
   title: 'Insights',
-  description: 'Trade notes from LAFA General Trading on food sourcing, wholesale supply, and working with a Dubai trading desk.',
+  description: 'Trade notes from LAFA General Trading on sourcing, wholesale supply, and import and export from Dubai.',
   path: '/insights',
 });
 
@@ -21,8 +21,8 @@ export default async function InsightsPage() {
     <Container className="py-16 sm:py-20">
       <PageHeader
         eyebrow="Insights"
-        title="Notes from the trade."
-        lede="Practical notes on food sourcing and wholesale enquiry work from Dubai."
+        title="Notes on trade."
+        lede="Short notes on sourcing, wholesale supply, and cross-border trade from Dubai."
       />
       {posts.length ? (
         <ul className="mt-12 max-w-3xl space-y-4">
@@ -42,7 +42,7 @@ export default async function InsightsPage() {
         <div className="mt-12">
           <EmptyState
             title="Insights will appear here."
-            text="Meanwhile, browse the food range or send a wholesale enquiry with the product and quantity you need."
+            text="Browse the trading range, or send an enquiry with the goods and quantity you need."
             action={
               <Link href="/products" className="ds-btn ds-button">
                 Browse products

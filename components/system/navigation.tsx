@@ -64,7 +64,7 @@ export function Navigation({
   }, [pathname]);
 
   useEffect(() => {
-    const media = window.matchMedia('(min-width: 720px)');
+    const media = window.matchMedia('(min-width: 1024px)');
     const onChange = () => {
       if (media.matches) setOpen(false);
     };

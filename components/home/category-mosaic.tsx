@@ -11,9 +11,9 @@ export function CategoryMosaic({ categories }: { categories: ProductCategory[] }
       <Container>
         <SectionHeading
           id="categories-title"
-          eyebrow="The range"
-          title="Food categories we trade"
-          lede="Licensed food wholesale groups. Open a category to browse the lines we trade."
+          eyebrow="Trading range"
+          title="Categories we supply"
+          lede="Food wholesale lines, together with general wholesale. Open a category to review what is listed, or enquire if you need a specification that is not shown."
         />
         <ul className="mt-12 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((category, index) => (

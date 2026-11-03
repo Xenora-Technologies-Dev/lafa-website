@@ -8,60 +8,41 @@ export const buyers = [
     text: 'Supermarkets, groceries, and cash-and-carry buyers.',
   },
   {
-    title: 'HORECA',
-    text: 'Hotels, restaurants, and catering procurement.',
+    title: 'Hospitality',
+    text: 'Hotels, restaurants, and catering teams buying for their operations.',
   },
 ] as const;
 
 export const capabilities = [
   {
     title: 'Sourcing',
-    text: 'Goods sought to a buyer’s specification and quantity.',
+    text: 'Goods located to the specification and quantity a buyer requires.',
   },
   {
     title: 'Wholesale',
-    text: 'Supply for resale. This is not a consumer shop.',
+    text: 'Supply arranged for businesses that purchase for resale or for their own operations.',
   },
   {
-    title: 'Import & export',
-    text: 'Food moved through Dubai for international trade.',
+    title: 'Import',
+    text: 'Goods brought into the United Arab Emirates for onward supply.',
   },
   {
-    title: 'Food first',
-    text: 'General wholesale of non-food goods stays secondary.',
-  },
-] as const;
-
-export const supplyNotes = [
-  {
-    title: 'Product and pack',
-    text: 'Name the line, and the pack if you know it. If the exact item is not listed, name the category and the specification you need.',
-  },
-  {
-    title: 'Volume',
-    text: 'State the quantity for the shipment. The desk quotes against that volume, not against a published price.',
-  },
-  {
-    title: 'Destination market',
-    text: 'Say where the goods are going. Availability is checked for that trade. Nothing on this site is a standing offer.',
-  },
-  {
-    title: 'Who is buying',
-    text: 'Wholesalers, retail buyers, and hotel, restaurant, and catering procurement. This desk does not take consumer orders.',
+    title: 'Export',
+    text: 'Goods supplied from Dubai to buyers in other markets.',
   },
 ] as const;
 
 export const enquirySteps = [
   {
-    title: 'Name the product',
-    text: 'Choose a category or open a listed product from the catalogue.',
+    title: 'Name the goods',
+    text: 'Tell us the product or category, and the pack size if you know it. If it is not listed, describe the specification you need.',
   },
   {
-    title: 'State the quantity',
-    text: 'Tell us the pack, the market, and the volume you need.',
+    title: 'State quantity and market',
+    text: 'Share the volume and where the goods are required. We check availability for that shipment.',
   },
   {
-    title: 'We reply with availability',
-    text: 'Price is quoted in the reply, not on this site. Nothing here is an order.',
+    title: 'Receive a quotation',
+    text: 'We reply with availability and price. A quotation follows our review of the enquiry.',
   },
 ] as const;

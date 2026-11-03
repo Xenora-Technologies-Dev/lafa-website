@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PartnerCta } from '@/components/home/partner-cta';
-import { SupplyNotes } from '@/components/home/supply-notes';
 import { Container } from '@/components/layout/container';
 import { ImageBlock } from '@/components/system/image-block';
 import { PageHeader } from '@/components/sections/page-header';
@@ -11,9 +10,9 @@ import { listProductCategories, productListHref } from '@/lib/products';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Export',
+  title: 'Trade',
   description:
-    'Food export from Dubai by LAFA General Trading. Tell us the product, the destination market, and the quantity. Wholesale enquiries only.',
+    'Import and export from Dubai by LAFA General Trading. Tell us the product, the market, and the quantity. We reply with availability and a quotation.',
   path: '/export',
   image: { url: homeMedia.trade.src, alt: homeMedia.trade.alt },
 });
@@ -24,9 +23,9 @@ export default async function ExportPage() {
     <>
       <Container className="ds-section">
         <PageHeader
-          eyebrow="Export"
-          title="Food supplied beyond Dubai."
-          lede="LAFA sources food and supplies it to business buyers in other markets. Name the product, the destination, and the quantity."
+          eyebrow="Trade"
+          title="Import and export, arranged from Dubai."
+          lede="LAFA sources goods and supplies them to business buyers in the United Arab Emirates and in other markets. Name the product, the destination, and the quantity."
         />
         <div className="mt-12 grid items-start gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <ImageBlock
@@ -38,12 +37,12 @@ export default async function ExportPage() {
             sizes="(min-width: 1024px) 48rem, 100vw"
           />
           <div>
-            <h2 className="ds-h3">What to send</h2>
+            <h2 className="ds-h3">What to include</h2>
             <p className="ds-body mt-4">
-              An export enquiry needs the product, the pack if you know it, the volume, and the market it is going to. Availability and price come back from the desk. This page is not a rate sheet.
+              An import or export enquiry should name the product, the pack if you know it, the volume, and the market. We reply with availability and a quotation.
             </p>
             <div className="mt-10">
-              <EnquiryProcess title="How an export enquiry moves" />
+              <EnquiryProcess title="How a trade enquiry moves" />
             </div>
           </div>
         </div>
@@ -61,7 +60,6 @@ export default async function ExportPage() {
           </ul>
         </div>
       </Container>
-      <SupplyNotes />
       <PartnerCta />
     </>
   );

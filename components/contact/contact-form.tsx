@@ -125,7 +125,7 @@ export function ContactForm({ interest }: { interest: string }) {
       </Button>
       {status === 'local' ? (
         <p className="text-sm leading-6 text-stone" role="status">
-          On this local preview the enquiry is not delivered. After deploy, submissions are stored for the desk to read. You will receive a reply by email.
+          On this local preview the enquiry is not delivered. After deploy, submissions are stored and we reply by email.
         </p>
       ) : null}
       {status === 'error' ? (

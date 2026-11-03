@@ -9,7 +9,7 @@ import { pageMeta } from '@/lib/seo';
 export const metadata: Metadata = pageMeta({
   title: 'Contact',
   description:
-    'Send a wholesale enquiry to LAFA General Trading. For businesses asking about food supply. No cart and no public prices.',
+    'Send a business enquiry to LAFA General Trading in Dubai. Tell us the product, the quantity, and the market. We reply with availability and a quotation.',
   path: '/contact',
 });
 
@@ -24,8 +24,8 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
       <div>
         <PageHeader
           eyebrow="Contact"
-          title="Wholesale enquiries."
-          lede="This form is for businesses asking about supply. It is not an order and it does not show a price. Say what you need and the quantity."
+          title="Business enquiries."
+          lede="Use this form to ask about supply. Include the product, the quantity, and the market. We reply with availability and a quotation."
         />
         <div id="enquiry-form" className="mt-10 max-w-xl scroll-mt-28">
           <ContactForm key={interest} interest={interest} />
@@ -34,7 +34,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
       <aside className="h-fit border border-line bg-white p-6">
         <h2 className="ds-h3">How to reach us</h2>
         <p className="mt-3 text-sm leading-6 text-stone">
-          Use the enquiry form for product, pack, volume, and destination market. The desk replies by email to the address you provide.
+          Use the form for the product, the quantity, and the destination market. We reply by email to the address you provide.
         </p>
         <p className="mt-4 text-sm text-navy">Dubai, United Arab Emirates</p>
         {channels.length ? (
@@ -48,7 +48,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
           </ul>
         ) : (
           <p className="mt-4 text-sm leading-6 text-stone">
-            Direct phone, WhatsApp, and street address are shared in the reply when they help close the enquiry.
+            Phone, WhatsApp, and a street address are not published here. We reply to the email address you provide.
           </p>
         )}
         {chat.external ? (
@@ -60,7 +60,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
           </p>
         ) : null}
         <p className="mt-4 text-sm leading-6 text-stone">
-          Enquiries are for wholesale food supply only. Consumer retail orders are not accepted through this site.
+          Enquiries are for business supply. Orders from individual consumers are not accepted through this site.
         </p>
       </aside>
     </Container>

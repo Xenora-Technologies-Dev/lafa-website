@@ -5,9 +5,9 @@ export function PartnerCta() {
   const chat = whatsappAction();
   return (
     <Cta
-      title="Looking for a reliable food trading partner?"
-      text="Tell us the product, the market, and the quantity. The reply is a wholesale quotation, not an online order."
-      action={{ href: '/contact', label: 'Request an enquiry' }}
+      title="Discuss supply with LAFA."
+      text="Tell us the product, the quantity, and the market. We reply with availability and a quotation."
+      action={{ href: '/contact', label: 'Send an enquiry' }}
       secondary={chat.external ? { href: chat.href, label: 'WhatsApp enquiry', external: true } : undefined}
     />
   );

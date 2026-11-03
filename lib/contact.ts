@@ -8,8 +8,8 @@ export function whatsappHref(extra?: string) {
   const digits = whatsappNumber().replace(/[^\d]/g, '');
   if (!digits) return '';
   const line = extra
-    ? `Hello LAFA General Trading, I would like to enquire about wholesale supply of ${extra}.`
-    : 'Hello LAFA General Trading, I would like to enquire about wholesale supply.';
+    ? `Hello LAFA General Trading, I would like to enquire about supply of ${extra}.`
+    : 'Hello LAFA General Trading, I would like to enquire about supply.';
   return `https://wa.me/${digits}?text=${encodeURIComponent(line)}`;
 }
 

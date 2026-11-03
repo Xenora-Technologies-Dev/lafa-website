@@ -16,7 +16,7 @@ export async function SiteFooter() {
 
   return (
     <Footer
-      summary={`${COMPANY} sources and supplies wholesale food from Dubai. Import, export, and trade for business buyers. Prices are quoted on enquiry.`}
+      summary={`${COMPANY} is a general trading company in Dubai, United Arab Emirates. We arrange sourcing, wholesale supply, import, and export for business buyers. Prices are quoted on enquiry.`}
       pages={footerNav}
       categories={categories.map((category) => ({ href: productListHref({ category: category.slug }), label: category.title }))}
       legal={`\u00A9 ${year} ${COMPANY}. All rights reserved.`}
@@ -31,19 +31,14 @@ export async function SiteFooter() {
               </a>
             </p>
           ) : null}
-          <p className="pt-3">
-            {chat.external ? (
+          {chat.external ? (
+            <p className="pt-3">
               <a href={chat.href} className="ds-btn ds-btn-wa ds-btn-sm ds-button" target="_blank" rel="noopener noreferrer">
                 <WhatsAppMark className="size-4" />
                 WhatsApp enquiry
               </a>
-            ) : (
-              <Link href={chat.href} className="ds-btn ds-btn-wa ds-btn-sm ds-button">
-                <WhatsAppMark className="size-4" />
-                WhatsApp enquiry
-              </Link>
-            )}
-          </p>
+            </p>
+          ) : null}
           {others.map((channel) => (
             <p key={channel.label} className="ds-small">
               {channel.label}: {channel.href ? <a href={channel.href}>{channel.value}</a> : channel.value}

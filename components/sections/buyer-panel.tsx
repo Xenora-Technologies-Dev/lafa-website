@@ -13,7 +13,7 @@ export function BuyerPanel() {
           Who the supply is for
         </h2>
         <p className="ds-body mt-5 max-w-2xl">
-          LAFA sells to businesses that buy food for resale or for a kitchen. Consumer orders are not taken through this site.
+          LAFA supplies businesses that buy goods for resale or for their own operations.
         </p>
         <ul className="ds-card-grid mt-12">
           {buyers.map((buyer, index) => {

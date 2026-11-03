@@ -51,7 +51,7 @@
     "slug": "mixed-vegetables",
     "category": "fruit-and-vegetables",
     "shortDescription": "Onion, tomato, and mixed vegetable lines for wholesale trade.",
-    "description": "Mixed vegetable lines for distributors and HORECA buyers. Specifying the crop, pack, and destination market helps the desk confirm availability quickly.",
+    "description": "Mixed vegetable lines for distributors and hospitality buyers. Specifying the crop, pack, and destination market helps us confirm availability quickly.",
     "image": {
       "src": "/images/home/lafa-produce.jpg",
       "alt": "Fresh citrus, tomatoes, herbs, and produce arranged for wholesale."
@@ -119,7 +119,7 @@
     "name": "Unsalted butter",
     "slug": "unsalted-butter",
     "category": "dairy",
-    "shortDescription": "Unsalted butter for bakery, HORECA, and wholesale buyers.",
+    "shortDescription": "Unsalted butter for bakery, hospitality, and wholesale buyers.",
     "description": "Unsalted butter for commercial kitchens and wholesalers. Pack format and origin are confirmed once the required volume and market are clear.",
     "image": {
       "src": "/images/home/lafa-dairy.jpg",
@@ -234,8 +234,8 @@
     "name": "Frozen boneless beef",
     "slug": "frozen-boneless-beef",
     "category": "meat",
-    "shortDescription": "Frozen boneless beef cuts for wholesale and HORECA buyers.",
-    "description": "Frozen boneless beef for distributors and food-service buyers. Cut, fat trim, and packing preference should be named in the enquiry so the desk can confirm supply.",
+    "shortDescription": "Frozen boneless beef cuts for wholesale and hospitality buyers.",
+    "description": "Frozen boneless beef for distributors and food-service buyers. Cut, fat trim, and packing preference should be named in the enquiry so we can confirm supply.",
     "image": {
       "src": "/images/home/lafa-meat.jpg",
       "alt": "Cuts of beef and poultry prepared for trade."
@@ -281,7 +281,7 @@
     "slug": "frozen-shrimp",
     "category": "fish-and-seafood",
     "shortDescription": "Frozen shrimp for wholesale seafood buyers.",
-    "description": "Frozen shrimp for distributors and HORECA. Size grade, glaze, and packing are confirmed against the buyer specification in the enquiry reply.",
+    "description": "Frozen shrimp for distributors and hospitality. Size grade, glaze, and packing are confirmed against the buyer specification in the enquiry reply.",
     "image": {
       "src": "/images/home/lafa-seafood.jpg",
       "alt": "Whole fish and prawns on ice."
@@ -304,7 +304,7 @@
     "slug": "whole-round-fish",
     "category": "fish-and-seafood",
     "shortDescription": "Frozen whole round fish for wholesale supply.",
-    "description": "Frozen whole round fish for wholesale buyers. Species, size range, and packing preference help the desk confirm what can be offered for the named market.",
+    "description": "Frozen whole round fish for wholesale buyers. Species, size range, and packing preference help us confirm what can be offered for the named market.",
     "image": {
       "src": "/images/home/lafa-seafood.jpg",
       "alt": "Whole fish and prawns on ice."
@@ -465,7 +465,7 @@
     "slug": "green-coffee-beans",
     "category": "coffee-tea-cocoa-spices",
     "shortDescription": "Green coffee beans for roasting and wholesale trade.",
-    "description": "Green coffee beans sourced for wholesale buyers. Origin preference, grade, and bag size help the desk confirm what can be offered.",
+    "description": "Green coffee beans sourced for wholesale buyers. Origin preference, grade, and bag size help us confirm what can be offered.",
     "image": {
       "src": "/images/home/lafa-spices.jpg",
       "alt": "Coffee beans, tea, cocoa, cinnamon, and cardamom."

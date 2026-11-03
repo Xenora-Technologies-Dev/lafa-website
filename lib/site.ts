@@ -5,7 +5,7 @@ export const COMPANY = 'LAFA General Trading';
 export const primaryNav = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
-  { href: '/export', label: 'Export' },
+  { href: '/export', label: 'Trade' },
   { href: '/about', label: 'About' },
   { href: '/insights', label: 'Insights' },
   { href: '/contact', label: 'Contact' },
@@ -14,7 +14,7 @@ export const primaryNav = [
 export const footerNav = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
-  { href: '/export', label: 'Export' },
+  { href: '/export', label: 'Trade' },
   { href: '/about', label: 'About' },
   { href: '/insights', label: 'Insights' },
   { href: '/contact', label: 'Contact' },

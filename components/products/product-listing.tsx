@@ -30,7 +30,7 @@ export async function ProductListing({
 
   const lede = result.category
     ? result.category.summary
-    : 'Wholesale food from Dubai. Filter by category or search the list. Prices are quoted on enquiry.';
+    : 'Goods supplied from Dubai. Filter by category or search the list. Prices are quoted on enquiry.';
 
   const emptyTitle = result.q || result.unknownCategory
     ? 'No products match.'
@@ -46,7 +46,7 @@ export async function ProductListing({
     <Container className="py-12 sm:py-16">
       <Breadcrumbs items={crumbs} />
       <div className="mt-8">
-        <PageHeader eyebrow="Products" title={result.category ? result.category.title : 'The food range.'} lede={lede} />
+        <PageHeader eyebrow="Products" title={result.category ? result.category.title : 'The trading range.'} lede={lede} />
       </div>
       <ProductFilters categories={categories} category={result.category?.slug ?? null} q={result.q} />
       <p className="ds-small mt-6">

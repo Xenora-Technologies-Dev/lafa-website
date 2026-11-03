@@ -39,7 +39,7 @@
     "id": "category-meat",
     "title": "Meat",
     "slug": "meat",
-    "description": "Frozen and chilled meat and meat products for wholesale buyers across retail and HORECA channels.",
+    "description": "Frozen and chilled meat and meat products for wholesale buyers across retail and hospitality channels.",
     "sortOrder": 5,
     "weight": "primary",
     "licenceCode": "4630.05"
@@ -93,7 +93,7 @@
     "id": "category-general-wholesale",
     "title": "General wholesale",
     "slug": "general-wholesale",
-    "description": "LAFA can source selected non-food goods under its general trading licence. Food remains the focus of this site.",
+    "description": "Selected non-food goods sourced for business buyers. Name the specification, quantity, and market in your enquiry.",
     "sortOrder": 11,
     "weight": "secondary",
     "licenceCode": "4690.00"

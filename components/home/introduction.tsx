@@ -7,16 +7,16 @@ export function Introduction() {
     <section className="ds-section" aria-labelledby="introduction-title">
       <Container className="grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(16rem,0.7fr)] lg:gap-20">
         <div>
-          <p className="ds-label">LAFA Trading</p>
+          <p className="ds-label">The company</p>
           <h2 id="introduction-title" className="ds-h2 mt-3 max-w-xl">
-            A Dubai house for international food trade.
+            A general trading company in the United Arab Emirates.
           </h2>
           <div className="mt-6 max-w-xl space-y-4">
             <p className="ds-body">
-              LAFA General Trading is based in Dubai. The company sources food, supplies it wholesale, and handles import and export for buyers who need a reliable counterpart.
+              LAFA General Trading is based in Dubai. We source goods to a buyer’s specification, supply them wholesale, and arrange import and export.
             </p>
             <p className="ds-body">
-              The relationship is the work: a product, a quantity, and a market. Availability and price are confirmed in the reply. This site is not a shop and it does not take orders.
+              Each shipment is confirmed by enquiry. Tell us the product, the quantity, and the market, and we reply with availability and a quotation.
             </p>
           </div>
           <p className="ds-small mt-6">
@@ -25,7 +25,7 @@ export function Introduction() {
             </Link>
             <span aria-hidden="true"> · </span>
             <Link href="/export" className="font-semibold text-navy hover:text-gold-deep">
-              Export
+              Trade
             </Link>
           </p>
         </div>

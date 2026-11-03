@@ -11,9 +11,6 @@ type SeedCategory = {
   licenceCode?: string;
 };
 
-export const FOOD_RANGE =
-  'fruit and vegetables, dairy, eggs, edible oils and fats, meat, fish and seafood, sugar and confectionery, bakery, beverages, and coffee, tea, cocoa and spices';
-
 export const seedCategories: Category[] = (categoryData as SeedCategory[]).map((category) => ({
   id: category.id,
   title: category.title,

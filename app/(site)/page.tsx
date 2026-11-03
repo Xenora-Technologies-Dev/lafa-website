@@ -4,9 +4,6 @@ import { FeaturedProducts } from '@/components/home/featured-products';
 import { HomeHero } from '@/components/home/home-hero';
 import { Introduction } from '@/components/home/introduction';
 import { PartnerCta } from '@/components/home/partner-cta';
-import { SupplyNotes } from '@/components/home/supply-notes';
-import { TradeBand } from '@/components/home/trade-band';
-import { WhyLafa } from '@/components/home/why-lafa';
 import { InsightsPreview } from '@/components/sections/insights-preview';
 import { BuyerPanel } from '@/components/sections/buyer-panel';
 import { CapabilityStrip } from '@/components/sections/capability-strip';
@@ -20,9 +17,9 @@ import { pageMeta } from '@/lib/seo';
 export const revalidate = 60;
 
 export const metadata: Metadata = pageMeta({
-  title: 'International food trading from Dubai',
+  title: 'General trading from Dubai',
   description:
-    'LAFA General Trading connects quality food markets from Dubai. Wholesale sourcing, import, and export for business buyers. Explore the range or send an enquiry.',
+    'LAFA General Trading is a general trading company in Dubai, United Arab Emirates. We source goods and arrange wholesale supply, import, and export for business buyers.',
   path: '/',
   image: { url: homeMedia.hero.src, alt: homeMedia.hero.alt },
 });
@@ -51,18 +48,9 @@ export default async function HomePage() {
         <BuyerPanel />
       </div>
       <div className="ds-rise">
-        <TradeBand />
-      </div>
-      <div className="ds-rise">
-        <WhyLafa />
-      </div>
-      <div className="ds-rise">
-        <SupplyNotes />
-      </div>
-      <div className="ds-rise">
         <section className="border-t border-line bg-paper">
           <Container className="ds-section">
-            <EnquiryProcess title="How an enquiry moves" />
+            <EnquiryProcess title="How an enquiry works" />
           </Container>
         </section>
       </div>

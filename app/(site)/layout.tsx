@@ -21,14 +21,14 @@ function organizationJsonLd() {
     },
     ...(contactFacts.email ? { email: contactFacts.email } : {}),
     ...(contactFacts.phone ? { telephone: contactFacts.phone } : {}),
-    description: 'Dubai food trading company for wholesale sourcing, import, and export.',
+    description: 'General trading company in Dubai, United Arab Emirates, for sourcing, wholesale supply, import, and export.',
   };
 }
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
   const chat = whatsappAction();
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className={chat.external ? 'site-has-wa flex min-h-screen flex-col' : 'flex min-h-screen flex-col'}>
       <a
         href="#content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:bg-white focus:px-3 focus:py-2"
@@ -40,7 +40,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <SiteFooter />
-      <WhatsAppFab href={chat.href} external={chat.external} />
+      {chat.external ? <WhatsAppFab href={chat.href} external /> : null}
       <JsonLd data={organizationJsonLd()} />
     </div>
   );
