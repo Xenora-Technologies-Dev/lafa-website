@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 const frames = {
-  header: 'w-[4.5rem] sm:w-20',
-  footer: 'w-24',
+  header: 'h-full w-full object-cover object-[center_46%]',
+  footer: 'h-auto w-40',
 } as const;
 
 /**
@@ -23,11 +23,12 @@ export function BrandLogo({
     <Image
       src="/logo.png"
       alt={decorative ? '' : 'LAFA General Trading'}
-      width={512}
-      height={512}
+      width={1024}
+      height={1024}
+      quality={92}
       priority={priority}
-      sizes={variant === 'footer' ? '96px' : '80px'}
-      className={cn('h-auto max-w-none', frames[variant])}
+      sizes={variant === 'footer' ? '160px' : '200px'}
+      className={cn(frames[variant])}
     />
   );
 }
