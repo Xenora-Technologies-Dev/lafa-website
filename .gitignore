@@ -6,6 +6,7 @@ out
 .env
 .env.local
 .env*.local
+uploads/
 .netlify
 *.log
 tsconfig.tsbuildinfo
