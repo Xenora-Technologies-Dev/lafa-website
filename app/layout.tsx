@@ -1,18 +1,14 @@
 import type { ReactNode } from 'react';
 import type { Metadata, Viewport } from 'next';
-<<<<<<< Updated upstream
-import { Newsreader, Source_Sans_3 } from 'next/font/google';
-=======
 import localFont from 'next/font/local';
->>>>>>> Stashed changes
 import { COMPANY, metadataBaseUrl } from '@/lib/site';
 import './globals.css';
 
 /**
- * Self-hosted faces. next/font/google only emitted metric-adjusted local()
- * fallbacks when the download failed, and Chrome garbles Arial when
+ * Self-hosted faces. A failed next/font/google download leaves only a
+ * metric-adjusted Arial fallback, and Chrome draws garbage glyphs when
  * ascent-override is above 100%. adjustFontFallback stays off so a missing
- * file falls back to the system font instead of that broken face.
+ * file falls through to the system font instead.
  */
 const sans = localFont({
   src: [
@@ -24,12 +20,6 @@ const sans = localFont({
   adjustFontFallback: false,
 });
 
-<<<<<<< Updated upstream
-const serif = Newsreader({
-  subsets: ['latin'],
-  weight: ['500'],
-  variable: '--font-newsreader',
-=======
 const serif = localFont({
   src: [
     { path: '../fonts/newsreader-400-normal.woff2', weight: '400', style: 'normal' },
@@ -48,7 +38,6 @@ const lil = localFont({
     { path: '../fonts/cormorant-garamond-500-italic.woff2', weight: '500', style: 'italic' },
   ],
   variable: '--font-cormorant',
->>>>>>> Stashed changes
   display: 'swap',
   adjustFontFallback: false,
 });
@@ -73,21 +62,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_AE',
     siteName: COMPANY,
-    images: [{ url: '/logo.png', alt: COMPANY }],
+    images: [
+      {
+        url: '/images/lil/lil-og-share-1200x630.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Lil by lafa',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/images/home/lafa-hero.jpg'],
+    images: ['/images/lil/lil-og-share-1200x630.jpg'],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-<<<<<<< Updated upstream
-    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
-=======
     <html lang="en" className={`${sans.variable} ${serif.variable} ${lil.variable}`}>
->>>>>>> Stashed changes
       <body className="min-h-screen bg-ivory font-sans text-charcoal antialiased">{children}</body>
     </html>
   );

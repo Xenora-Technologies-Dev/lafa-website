@@ -1,49 +1,42 @@
 import Link from 'next/link';
-import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
+import { OpenContactButton } from '@/components/contact/open-contact-button';
 import { Footer } from '@/components/system/footer';
-import { confirmedChannels, whatsappAction } from '@/lib/contact';
+import { emailHref, telHref } from '@/lib/contact';
 import { listProductCategories, productListHref } from '@/lib/products';
 import { COMPANY, footerNav } from '@/lib/site';
-import { socialLinks } from '@/lib/site-facts';
+import { confirmedPlace, contactFacts, phoneLines, socialLinks, unconfirmedCompanyFacts } from '@/lib/site-facts';
 
 export async function SiteFooter() {
   const categories = await listProductCategories();
-  const channels = confirmedChannels();
-  const chat = whatsappAction();
   const year = new Date().getFullYear();
-  const email = channels.find((channel) => channel.label === 'Email');
-  const others = channels.filter((channel) => channel.label !== 'Email');
 
   return (
     <Footer
-      summary={`${COMPANY} is a general trading company in Dubai, United Arab Emirates. We arrange sourcing, wholesale supply, import, and export for business buyers. Prices are quoted on enquiry.`}
+      summary={`${COMPANY} is a general trading company in ${confirmedPlace.locality}, ${confirmedPlace.country}. The food division arranges sourcing, supply, import, and export. Lil by lafa is the women's fashion line. Prices are quoted on enquiry.`}
       pages={footerNav}
       categories={categories.map((category) => ({ href: productListHref({ category: category.slug }), label: category.title }))}
       legal={`\u00A9 ${year} ${COMPANY}. All rights reserved.`}
       contact={
         <div className="space-y-2">
-          <p className="ds-small">Dubai, United Arab Emirates</p>
-          {email ? (
-            <p className="ds-small">
-              Email:{' '}
-              <a className="ds-accent-text" href={email.href}>
-                {email.value}
-              </a>
-            </p>
-          ) : null}
-          {chat.external ? (
-            <p className="pt-3">
-              <a href={chat.href} className="ds-btn ds-btn-wa ds-btn-sm ds-button" target="_blank" rel="noopener noreferrer">
-                <WhatsAppMark className="size-4" />
-                WhatsApp enquiry
-              </a>
-            </p>
-          ) : null}
-          {others.map((channel) => (
-            <p key={channel.label} className="ds-small">
-              {channel.label}: {channel.href ? <a href={channel.href}>{channel.value}</a> : channel.value}
+          <p className="ds-small">
+            {confirmedPlace.locality}, {confirmedPlace.country}
+          </p>
+          <p className="ds-small">Street address: {unconfirmedCompanyFacts.streetAddress}</p>
+          {phoneLines.map((line) => (
+            <p key={line.e164} className="ds-small">
+              <a href={telHref(line)}>{line.display}</a>
             </p>
           ))}
+          {contactFacts.email ? (
+            <p className="ds-small">
+              <a className="ds-accent-text" href={emailHref()}>
+                {contactFacts.email}
+              </a>
+            </p>
+          ) : null}
+          <p className="pt-3">
+            <OpenContactButton className="ds-btn ds-btn-wa ds-btn-sm ds-button" label="WhatsApp" />
+          </p>
           {socialLinks.length ? (
             <ul className="flex flex-wrap gap-x-4 gap-y-2 pt-2">
               {socialLinks.map((link) => (
@@ -56,6 +49,11 @@ export async function SiteFooter() {
             </ul>
           ) : null}
           <p className="pt-2">
+            <Link href="/lil" className="ds-small ds-accent-text">
+              Lil by lafa
+            </Link>
+          </p>
+          <p>
             <Link href="/contact" className="ds-small ds-accent-text">
               Send an enquiry
             </Link>

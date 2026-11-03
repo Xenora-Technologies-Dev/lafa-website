@@ -8,11 +8,13 @@ import { ProductSpecs } from '@/components/products/product-specs';
 import { JsonLd } from '@/components/layout/json-ld';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { Container } from '@/components/layout/container';
-import { canonicalCategorySlug, getProductBySlug, getProductCategory, imageAlt, imageSrc, listProductCategories, listPublishedProducts, listRelatedProducts, productListHref, productPath } from '@/lib/products';
-import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
-import { whatsappAction } from '@/lib/contact';
+import { canonicalCategorySlug, getProductBySlug, getProductCategory, imageSrc, listProductCategories, listPublishedProducts, listRelatedProducts, productListHref, productPath, resolveCatalogueImage } from '@/lib/products';
+import { AddToEnquiry } from '@/components/contact/enquiry-list';
+import { ContactLines } from '@/components/contact/contact-lines';
+import { MobileEnquiryBar } from '@/components/products/mobile-enquiry-bar';
 import { pageMeta } from '@/lib/seo';
 import { COMPANY, siteOrigin } from '@/lib/site';
+import { contactFacts } from '@/lib/site-facts';
 
 export const revalidate = 60;
 
@@ -37,12 +39,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: 'Product' };
   }
   const description = product.seoDescription || `${product.shortDescription} Enquire with ${COMPANY}. Prices are quoted on enquiry.`;
-  const image = imageSrc(product.image);
+  const picture = resolveCatalogueImage(product.category, product.image);
   return pageMeta({
     title: product.seoTitle || product.name,
     description,
     path: productPath(product),
-    ...(image ? { image: { url: image, alt: imageAlt(product.image, product.name) } } : {}),
+    image: { url: picture.src, alt: picture.alt },
   });
 }
 
@@ -59,23 +61,24 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
   const [category, related] = await Promise.all([getProductCategory(product.category), listRelatedProducts(product)]);
   const path = productPath(product);
-  const chat = whatsappAction(product.name);
   const origin = siteOrigin();
-  const image = imageSrc(product.image);
+  const picture = resolveCatalogueImage(product.category, product.image);
+  const image = imageSrc(picture);
+  const enquiry = { division: 'food' as const, subject: product.name };
 
   return (
-    <article>
-      <Container className="py-12 sm:py-16">
+    <article data-enquiry-division="food" data-enquiry-subject={product.name}>
+      <Container className="py-12 pb-28 sm:py-16 md:pb-16">
         <Breadcrumbs
           items={[
             { name: 'Home', path: '/' },
-            { name: 'Products', path: '/products' },
+            { name: 'Food', path: '/products' },
             ...(category ? [{ name: category.title, path: productListHref({ category: category.slug }) }] : []),
             { name: product.name, path },
           ]}
         />
         <div className="mt-8 grid gap-10 md:grid-cols-2 md:items-start">
-          <ProductGallery image={product.image} gallery={product.gallery} priority />
+          <ProductGallery image={picture} gallery={product.gallery} priority />
           <div>
             {category ? (
               <p className="ds-label">
@@ -86,16 +89,21 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             ) : null}
             <h1 className="ds-h1 mt-3">{product.name}</h1>
             <p className="ds-body mt-5">{product.description}</p>
-            <ProductSpecs product={product} />
-            <p className="ds-small mt-6">Price and availability are confirmed in our reply.</p>
-            <div className="mt-6 flex flex-col gap-3 min-[480px]:flex-row min-[480px]:flex-wrap">
-              <Link href={`/contact?product=${encodeURIComponent(product.name)}`} className="ds-btn ds-button w-full min-[480px]:w-auto">
-                Request an enquiry
+            <div id="product-specs">
+              <ProductSpecs product={product} />
+            </div>
+            <p className="ds-small mt-6">Price and availability are confirmed in our reply. There is no checkout on this site.</p>
+            <div className="mt-6">
+              <ContactLines context={enquiry} />
+            </div>
+            <div className="mt-4 flex flex-col gap-3 min-[480px]:flex-row min-[480px]:flex-wrap">
+              <AddToEnquiry name={product.name} />
+              <Link href={`/contact?product=${encodeURIComponent(product.name)}&division=food`} className="ds-btn ds-btn-sm ds-button w-full min-[480px]:w-auto">
+                Enquiry form
               </Link>
-              {chat.external ? (
-                <a href={chat.href} className="ds-btn ds-btn-wa ds-button w-full min-[480px]:w-auto" target="_blank" rel="noopener noreferrer">
-                  <WhatsAppMark className="size-4" />
-                  WhatsApp enquiry
+              {contactFacts.email ? (
+                <a className="ds-btn ds-btn-outline ds-btn-sm ds-button w-full min-[480px]:w-auto" href={`mailto:${contactFacts.email}?subject=${encodeURIComponent(`Enquiry: ${product.name}`)}`}>
+                  Email
                 </a>
               ) : null}
             </div>
@@ -116,6 +124,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           </section>
         ) : null}
       </Container>
+      <MobileEnquiryBar subject={product.name} />
       <JsonLd
         data={{
           '@context': 'https://schema.org',

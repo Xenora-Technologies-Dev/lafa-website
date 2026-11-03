@@ -15,12 +15,14 @@
     "db:setup": "node scripts/db-setup.mjs"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@neondatabase/serverless": "^1.0.2",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gsap": "^3.15.0",
     "imagekit": "^6.0.0",
     "lucide-react": "^0.544.0",
     "next": "^15.5.4",

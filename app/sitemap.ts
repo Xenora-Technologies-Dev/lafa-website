@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getPublishedCatalogue } from '@/lib/catalogue';
+import { lilLines, lilPath } from '@/lib/lil';
 import { listProductCategories, listPublishedProducts, productListHref, productPath } from '@/lib/products';
 import { siteOrigin } from '@/lib/site';
 
@@ -20,6 +21,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/products',
     '/insights',
     '/contact',
+    '/lil',
+    ...lilLines.map((line) => lilPath(line.slug)),
     ...categories.map((category) => productListHref({ category: category.slug })),
     ...products.map((product) => productPath(product)),
     ...posts.map((post) => `/insights/${post.slug}`),

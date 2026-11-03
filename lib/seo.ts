@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 
 const fallbackImage = {
-  url: '/images/home/lafa-hero.jpg',
-  alt: 'Rice, oil, spices, and citrus arranged for wholesale food trade.',
+  url: '/images/lil/lil-og-share-1200x630.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'Lil by lafa',
 };
 
 export function pageMeta({

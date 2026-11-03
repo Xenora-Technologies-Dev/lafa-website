@@ -4,7 +4,10 @@ import { useEffect, useId, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import { OpenContactButton } from '@/components/contact/open-contact-button';
+import { enquiryMessage, telHref, whatsappHrefFor } from '@/lib/contact';
 import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
+import { contactFacts, phoneLines } from '@/lib/site-facts';
 import { cn } from '@/lib/utils';
 
 export type NavItem = { href: string; label: string; external?: boolean; tone?: 'whatsapp' };
@@ -15,53 +18,30 @@ function isCurrent(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-function ItemLink({
-  item,
-  className,
-  onClick,
-}: {
-  item: NavItem;
-  className?: string;
-  onClick?: () => void;
-}) {
-  const content = (
-    <>
-      {item.tone === 'whatsapp' ? <WhatsAppMark className="size-4 shrink-0" /> : null}
-      <span>{item.label}</span>
-    </>
-  );
-  if (item.external) {
-    return (
-      <a href={item.href} className={className} target="_blank" rel="noopener noreferrer" onClick={onClick}>
-        {content}
-      </a>
-    );
-  }
-  return (
-    <Link href={item.href} className={className} onClick={onClick}>
-      {content}
-    </Link>
-  );
-}
-
 export function Navigation({
   items,
   action,
-  alternate,
 }: {
   items: readonly NavItem[];
   action?: NavItem;
-  alternate?: NavItem;
 }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const menuId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
+  const division = pathname.startsWith('/lil') ? 'lil' : 'food';
+  const message = enquiryMessage({ division });
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const header = buttonRef.current?.closest('header');
+    header?.classList.toggle('is-menu-open', open);
+    return () => header?.classList.remove('is-menu-open');
+  }, [open]);
 
   useEffect(() => {
     const media = window.matchMedia('(min-width: 1024px)');
@@ -70,15 +50,6 @@ export function Navigation({
     };
     media.addEventListener('change', onChange);
     return () => media.removeEventListener('change', onChange);
-  }, []);
-
-  useEffect(() => {
-    const header = buttonRef.current?.closest('header');
-    if (!header) return;
-    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 6);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   function closeMenu() {
@@ -92,10 +63,7 @@ export function Navigation({
     document.body.style.overflow = 'hidden';
     drawerRef.current?.querySelector('a')?.focus();
     function onKey(event: KeyboardEvent) {
-      if (event.key === 'Escape') {
-        setOpen(false);
-        buttonRef.current?.focus();
-      }
+      if (event.key === 'Escape') closeMenu();
     }
     window.addEventListener('keydown', onKey);
     return () => {
@@ -103,8 +71,6 @@ export function Navigation({
       window.removeEventListener('keydown', onKey);
     };
   }, [open]);
-
-  const whatsappClass = 'ds-btn ds-btn-wa ds-button';
 
   return (
     <div className="site-header-tools">
@@ -119,10 +85,12 @@ export function Navigation({
             {item.label}
           </Link>
         ))}
-        {alternate ? (
-          <ItemLink item={alternate} className={alternate.tone === 'whatsapp' ? whatsappClass : 'ds-nav site-nav-link'} />
+        <OpenContactButton className="ds-btn ds-btn-wa ds-button" label="WhatsApp" division={division} />
+        {action ? (
+          <Link href={action.href} className="ds-btn ds-button">
+            {action.label}
+          </Link>
         ) : null}
-        {action ? <ItemLink item={action} className="ds-btn ds-button" /> : null}
       </nav>
       <button
         ref={buttonRef}
@@ -152,10 +120,7 @@ export function Navigation({
                   <Link
                     href={item.href}
                     aria-current={isCurrent(pathname, item.href) ? 'page' : undefined}
-                    className={cn(
-                      'ds-nav block py-4',
-                      isCurrent(pathname, item.href) && 'shadow-[inset_3px_0_0_var(--ds-gold)]',
-                    )}
+                    className={cn('ds-nav block py-4', isCurrent(pathname, item.href) && 'shadow-[inset_3px_0_0_var(--ds-gold)]')}
                     onClick={closeMenu}
                   >
                     {item.label}
@@ -163,15 +128,45 @@ export function Navigation({
                 </li>
               ))}
             </ul>
-            <div className="mt-auto flex flex-col gap-3 pt-8">
-              {alternate ? (
-                <ItemLink
-                  item={alternate}
-                  className={alternate.tone === 'whatsapp' ? `${whatsappClass} w-full` : 'ds-btn ds-btn-outline ds-button w-full'}
-                  onClick={closeMenu}
-                />
+            <div className="mt-6 border-t border-line pt-6">
+              <p className="ds-label">Contact</p>
+              <ul className="mt-4 space-y-4">
+                {phoneLines.map((line) => (
+                  <li key={line.e164}>
+                    <p className="text-sm font-semibold text-navy">{line.display}</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      <a
+                        href={whatsappHrefFor(line, message)}
+                        className="ds-btn ds-btn-wa ds-btn-sm ds-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={closeMenu}
+                      >
+                        <WhatsAppMark className="size-4" />
+                        WhatsApp
+                      </a>
+                      <a href={telHref(line)} className="ds-btn ds-btn-outline ds-btn-sm ds-button" onClick={closeMenu}>
+                        Call
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              {contactFacts.email ? (
+                <p className="ds-small mt-4">
+                  <a href={`mailto:${contactFacts.email}`} onClick={closeMenu}>
+                    {contactFacts.email}
+                  </a>
+                </p>
               ) : null}
-              {action ? <ItemLink item={action} className="ds-btn ds-button w-full" onClick={closeMenu} /> : null}
+            </div>
+            <div className="mt-auto flex flex-col gap-3 pt-8">
+              <OpenContactButton className="ds-btn ds-btn-wa ds-button w-full" label="WhatsApp" division={division} />
+              {action ? (
+                <Link href={action.href} className="ds-btn ds-button w-full" onClick={closeMenu}>
+                  {action.label}
+                </Link>
+              ) : null}
             </div>
           </nav>
         </div>

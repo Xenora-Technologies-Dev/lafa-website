@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { ProductImage } from '@/components/catalogue/product-image';
 import { Markdown } from '@/components/insights/markdown';
+import { ReadingProgress } from '@/components/insights/reading-progress';
+import { OpenContactButton } from '@/components/contact/open-contact-button';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { Container } from '@/components/layout/container';
 import { JsonLd } from '@/components/layout/json-ld';
@@ -40,6 +43,7 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
 
   return (
     <article>
+      <ReadingProgress />
       <Container className="py-16 sm:py-20">
         <Breadcrumbs
           items={[
@@ -59,6 +63,16 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
         ) : null}
         <div className="mt-8 max-w-3xl">
           <Markdown>{post.body}</Markdown>
+        </div>
+        <div className="mt-12 max-w-3xl border-t border-line pt-8">
+          <h2 className="ds-h3">Continue with an enquiry</h2>
+          <p className="ds-small mt-3">Food supply and Lil by lafa both come back to the same lines.</p>
+          <div className="mt-5 flex flex-col gap-3 min-[480px]:flex-row">
+            <OpenContactButton className="ds-btn ds-btn-wa ds-button w-full min-[480px]:w-auto" label="WhatsApp" />
+            <Link href="/contact" className="ds-btn ds-button w-full min-[480px]:w-auto">
+              Contact
+            </Link>
+          </div>
         </div>
       </Container>
       <JsonLd

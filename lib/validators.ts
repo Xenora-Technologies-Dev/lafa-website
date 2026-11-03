@@ -36,7 +36,7 @@ export function parseEnquiry(input: unknown): ParseResult<EnquiryInput> {
   const company = text(body.company, 160);
   const email = text(body.email, 200).toLowerCase();
   const message = block(body.message, 4000);
-  if (!name || !company || !email || !message) return { error: 'Name, company, email, and message are required.' };
+  if (!name || !email || !message) return { error: 'Name, email, and message are required.' };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { error: 'Enter a valid email address.' };
 
   return {

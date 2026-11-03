@@ -10,8 +10,8 @@ export function InsightsPreview({ posts }: { posts: Post[] }) {
       <Container className="py-16 sm:py-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="ds-label">Insights</p>
-            <h2 className="ds-h2 mt-3">Notes on trade</h2>
+            <p className="ds-label">07 · Insights</p>
+            <h2 className="ds-h2 mt-3">Notes from the trading desk</h2>
           </div>
           <Link href="/insights" className="text-sm font-semibold text-navy hover:text-gold-deep">
             All insights

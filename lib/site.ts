@@ -2,23 +2,21 @@ import { contactFacts } from '@/lib/site-facts';
 
 export const COMPANY = 'LAFA General Trading';
 
+/**
+ * English copy and unprefixed routes, so an Arabic locale can be added later
+ * without renaming these paths.
+ */
 export const primaryNav = [
   { href: '/', label: 'Home' },
-  { href: '/products', label: 'Products' },
+  { href: '/products', label: 'Food' },
+  { href: '/lil', label: 'Lil' },
   { href: '/export', label: 'Trade' },
   { href: '/about', label: 'About' },
   { href: '/insights', label: 'Insights' },
   { href: '/contact', label: 'Contact' },
 ] as const;
 
-export const footerNav = [
-  { href: '/', label: 'Home' },
-  { href: '/products', label: 'Products' },
-  { href: '/export', label: 'Trade' },
-  { href: '/about', label: 'About' },
-  { href: '/insights', label: 'Insights' },
-  { href: '/contact', label: 'Contact' },
-] as const;
+export const footerNav = primaryNav;
 
 export { contactFacts };
 

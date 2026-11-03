@@ -1,14 +1,14 @@
+'use client';
+
 import Link from 'next/link';
-import { WhatsAppMark } from '@/components/layout/whatsapp-mark';
+import { useRef } from 'react';
+import { OpenContactButton } from '@/components/contact/open-contact-button';
+import { ArtImage } from '@/components/media/art-image';
 import { Container } from '@/components/system/container';
-import { ImageBlock } from '@/components/system/image-block';
-import { whatsappAction } from '@/lib/contact';
-import { homeMedia } from '@/lib/home';
+import { MOTION_QUERY, REDUCED_QUERY, ScrollTrigger, SplitText, gsap, useGSAP } from '@/lib/gsap';
+import { foodMedia } from '@/lib/home';
 
 export function HomeHero() {
-<<<<<<< Updated upstream
-  const chat = whatsappAction();
-=======
   const ref = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -62,41 +62,36 @@ export function HomeHero() {
     };
   }, { scope: ref });
 
->>>>>>> Stashed changes
   return (
-    <section className="border-b border-line bg-paper">
-      <Container className="grid items-end gap-10 py-12 sm:py-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:py-20">
-        <div className="ds-fade">
-          <p className="ds-label">Dubai, United Arab Emirates</p>
-          <h1 className="ds-display mt-5 max-w-xl">General trading, based in Dubai</h1>
-          <p className="ds-body mt-6 max-w-xl text-[1.0625rem] sm:text-[1.125rem]">
-            LAFA General Trading sources goods for business buyers, supplies them on a wholesale basis, and arranges import and export from the United Arab Emirates.
+    <section ref={ref} className="border-b border-line bg-navy-deep text-foam">
+      <Container className="grid items-end gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:py-20">
+        <div className="on-dark">
+          <p className="hero-rise ds-label">Dubai, United Arab Emirates</p>
+          <h1 className="hero-title ds-display mt-5 max-w-xl">Food for trade. Fashion, as Lil.</h1>
+          <p className="hero-rise ds-body mt-6 max-w-xl">
+            LAFA General Trading sources food and arranges import and export from Dubai. Lil by lafa is the house line for women: abayas, modern wear, dresses, hijabs, and the quieter pieces around them.
           </p>
-          <div className="mt-8 flex flex-col gap-3 min-[480px]:flex-row min-[480px]:flex-wrap">
+          <div className="hero-rise mt-8 flex flex-col gap-3 min-[480px]:flex-row min-[480px]:flex-wrap">
             <Link href="/products" className="ds-btn ds-button w-full min-[480px]:w-auto">
-              Explore the range
+              Browse the food range
             </Link>
-            {chat.external ? (
-              <a href={chat.href} className="ds-btn ds-btn-wa ds-button w-full min-[480px]:w-auto" target="_blank" rel="noopener noreferrer">
-                <WhatsAppMark className="size-4" />
-                WhatsApp enquiry
-              </a>
-            ) : (
-              <Link href="/contact" className="ds-btn ds-btn-outline ds-button w-full min-[480px]:w-auto">
-                Send an enquiry
-              </Link>
-            )}
+            <Link href="/lil" className="ds-btn ds-btn-outline ds-button w-full min-[480px]:w-auto">
+              Explore Lil
+            </Link>
+            <OpenContactButton className="ds-btn ds-btn-wa ds-button w-full min-[480px]:w-auto" label="WhatsApp" division="food" />
           </div>
         </div>
-        <ImageBlock
-          src={homeMedia.hero.src}
-          alt={homeMedia.hero.alt}
-          ratio="16 / 9"
-          fit="cover"
-          priority
-          sizes="(min-width: 1024px) 42rem, 100vw"
-          className="ds-fade"
-        />
+        <figure className="hero-visual relative m-0 aspect-[4/5] lg:aspect-[16/9]">
+          <ArtImage
+            desktop={foodMedia.hero}
+            mobile={foodMedia.heroMobile}
+            alt={foodMedia.heroAlt}
+            priority
+            sizes="(min-width: 1024px) 42rem, 100vw"
+            className="h-full w-full object-cover"
+          />
+          <figcaption className="campaign-note mt-3 text-foam/80">Campaign imagery</figcaption>
+        </figure>
       </Container>
     </section>
   );

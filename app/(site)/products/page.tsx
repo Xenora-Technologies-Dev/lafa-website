@@ -14,10 +14,10 @@ type Search = { q?: string; category?: string; page?: string };
 export async function generateMetadata({ searchParams }: { searchParams: Promise<Search> }): Promise<Metadata> {
   const params = await searchParams;
   const result = await queryProducts(params);
-  const title = result.category ? result.category.title : 'Products';
+  const title = result.category ? result.category.title : 'Food';
   const description = result.category
     ? `${result.category.summary} Supplied by LAFA General Trading. Prices are quoted on enquiry.`
-    : 'The trading range from LAFA General Trading in Dubai. Search the list, filter by category, and send an enquiry. Prices are quoted on enquiry.';
+    : 'The food range from LAFA General Trading in Dubai. Search the list, filter by category, and send an enquiry. Prices are quoted on enquiry.';
   const path = productListHref({
     category: result.q ? result.category?.slug : null,
     q: result.q || null,

@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import { CatalogueCard } from '@/components/products/catalogue-card';
-import { Pagination } from '@/components/products/pagination';
-import { ProductFilters } from '@/components/products/product-filters';
+import { FoodBrowser } from '@/components/products/food-browser';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { Container } from '@/components/layout/container';
 import { PageHeader } from '@/components/sections/page-header';
-import { EmptyState } from '@/components/system/states';
-import { listProductCategories, productListHref, queryProducts } from '@/lib/products';
+import { ImageBlock } from '@/components/system/image-block';
+import { resolveCatalogueImage } from '@/lib/products/category-meta';
+import { listProductCategories, listPublishedProducts, productListHref, queryProducts } from '@/lib/products';
 
 export async function ProductListing({
   q = '',
@@ -17,64 +16,65 @@ export async function ProductListing({
   category?: string;
   page?: string;
 }) {
-  const [result, categories] = await Promise.all([
+  const [result, categories, products] = await Promise.all([
     queryProducts({ q, category, page }),
     listProductCategories(),
+    listPublishedProducts(),
   ]);
 
   const crumbs = [
     { name: 'Home', path: '/' },
-    { name: 'Products', path: '/products' },
+    { name: 'Food', path: '/products' },
     ...(result.category ? [{ name: result.category.title, path: productListHref({ category: result.category.slug }) }] : []),
   ];
 
   const lede = result.category
     ? result.category.summary
-    : 'Goods supplied from Dubai. Filter by category or search the list. Prices are quoted on enquiry.';
+    : 'The food division, supplied from Dubai. Filter by category or search the list. Prices are quoted on enquiry.';
 
-  const emptyTitle = result.q || result.unknownCategory
-    ? 'No products match.'
-    : result.category
-      ? 'No lines in this category right now.'
-      : 'No products match your filters.';
-
-  const emptyText = result.q || result.unknownCategory
-    ? 'Try another category, or send an enquiry with the product and the quantity.'
-    : 'Clear the filters, browse another category, or send an enquiry with the product and quantity you need.';
+  const cards = products.map((product) => {
+    const image = resolveCatalogueImage(product.category, product.image);
+    const categoryTitle = categories.find((item) => item.slug === product.category)?.title;
+    return {
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      categorySlug: product.category,
+      categoryTitle,
+      shortDescription: product.shortDescription,
+      imageUrl: image.src,
+      imageAlt: image.alt,
+    };
+  });
 
   return (
     <Container className="py-12 sm:py-16">
       <Breadcrumbs items={crumbs} />
-      <div className="mt-8">
-        <PageHeader eyebrow="Products" title={result.category ? result.category.title : 'The trading range.'} lede={lede} />
-      </div>
-      <ProductFilters categories={categories} category={result.category?.slug ?? null} q={result.q} />
-      <p className="ds-small mt-6">
-        {result.total === 0 ? 'No products' : result.total === 1 ? '1 product' : `${result.total} products`}
-        {result.q ? ` for “${result.q}”` : ''}
-      </p>
-      {result.products.length ? (
-        <ul className="ds-card-grid mt-8">
-          {result.products.map((product) => (
-            <li key={product.id}>
-              <CatalogueCard product={product} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div className="mt-8">
-          <EmptyState
-            title={emptyTitle}
-            text={emptyText}
-            action={
-              <Link href={result.q || result.category ? '/products' : '/contact'} className="ds-btn ds-button">
-                {result.q || result.category ? 'Clear filters' : 'Send an enquiry'}
-              </Link>
-            }
+      <div className="mt-8 grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,18rem)]">
+        <PageHeader eyebrow="Food" title={result.category ? result.category.title : 'The food range.'} lede={lede} />
+        {result.category ? (
+          <ImageBlock
+            src={result.category.image.src}
+            alt={result.category.image.alt}
+            caption="Campaign imagery"
+            ratio="16 / 9"
+            fit="cover"
+            sizes="18rem"
           />
-        </div>
-      )}
-      <Pagination page={result.page} pageCount={result.pageCount} category={result.category?.slug ?? null} q={result.q} />
+        ) : null}
+      </div>
+      <FoodBrowser
+        products={cards}
+        categories={categories.map((item) => ({ slug: item.slug, title: item.title }))}
+        initialCategory={result.category?.slug ?? null}
+        initialQuery={result.q}
+        initialPage={result.page}
+      />
+      {result.q || result.unknownCategory ? (
+        <p className="ds-small mt-6">
+          Nothing in this search? <Link href="/contact">Send an enquiry</Link> with the product and the quantity.
+        </p>
+      ) : null}
     </Container>
   );
 }
