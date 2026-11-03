@@ -1,27 +1,29 @@
 import type { Metadata } from 'next';
 import { CategoryMosaic } from '@/components/home/category-mosaic';
+import { ClosingBand } from '@/components/home/closing-band';
+import { Divisions } from '@/components/home/divisions';
 import { FeaturedProducts } from '@/components/home/featured-products';
 import { HomeHero } from '@/components/home/home-hero';
-import { Introduction } from '@/components/home/introduction';
-import { PartnerCta } from '@/components/home/partner-cta';
+import { LilTeaser } from '@/components/home/lil-teaser';
+import { TrustMarquee } from '@/components/home/trust-marquee';
+import { WhatWeDo } from '@/components/home/what-we-do';
+import { SectionIntro } from '@/components/home/section-intro';
 import { InsightsPreview } from '@/components/sections/insights-preview';
-import { BuyerPanel } from '@/components/sections/buyer-panel';
-import { CapabilityStrip } from '@/components/sections/capability-strip';
 import { EnquiryProcess } from '@/components/sections/enquiry-process';
 import { Container } from '@/components/system/container';
 import { getPublishedCatalogue } from '@/lib/catalogue';
-import { homeMedia } from '@/lib/home';
+import { foodMedia } from '@/lib/home';
 import { listFeaturedProducts, listProductCategories } from '@/lib/products';
 import { pageMeta } from '@/lib/seo';
 
 export const revalidate = 60;
 
 export const metadata: Metadata = pageMeta({
-  title: 'General trading from Dubai',
+  title: 'Food trading and Lil by lafa',
   description:
-    'LAFA General Trading is a general trading company in Dubai, United Arab Emirates. We source goods and arrange wholesale supply, import, and export for business buyers.',
+    'LAFA General Trading in Dubai supplies food by enquiry and presents Lil by lafa, a women’s fashion line. Message, call, or email either division.',
   path: '/',
-  image: { url: homeMedia.hero.src, alt: homeMedia.hero.alt },
+  image: { url: foodMedia.hero, alt: foodMedia.heroAlt },
 });
 
 export default async function HomePage() {
@@ -34,30 +36,27 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero />
-      <CapabilityStrip />
-      <div className="ds-rise">
-        <Introduction />
-      </div>
-      <div className="ds-rise">
-        <CategoryMosaic categories={categories} />
-      </div>
-      <div className="ds-rise">
-        <FeaturedProducts products={featured} />
-      </div>
-      <div className="ds-rise">
-        <BuyerPanel />
-      </div>
-      <div className="ds-rise">
-        <section className="border-t border-line bg-paper">
-          <Container className="ds-section">
-            <EnquiryProcess title="How an enquiry works" />
-          </Container>
-        </section>
-      </div>
-      <div className="ds-rise">
-        <InsightsPreview posts={catalogue.posts.slice(0, 3)} />
-      </div>
-      <PartnerCta />
+      <TrustMarquee />
+      <WhatWeDo />
+      <Divisions />
+      <CategoryMosaic categories={categories} />
+      <LilTeaser />
+      <FeaturedProducts products={featured} />
+      <section className="border-t border-line bg-paper">
+        <Container className="ds-section">
+          <SectionIntro
+            index="06"
+            eyebrow="Enquiries"
+            title="How an enquiry works"
+            lede="The same three steps cover food supply. For Lil, name the line and the piece and we reply the same way."
+          />
+          <div className="mt-10">
+            <EnquiryProcess title="Three steps" />
+          </div>
+        </Container>
+      </section>
+      <InsightsPreview posts={catalogue.posts.slice(0, 3)} />
+      <ClosingBand />
     </>
   );
 }

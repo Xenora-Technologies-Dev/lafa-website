@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { CatalogueCard } from '@/components/products/catalogue-card';
+import { Reveal } from '@/components/motion/reveal';
+import { SectionIntro } from '@/components/home/section-intro';
 import { Container } from '@/components/system/container';
-import { SectionHeading } from '@/components/system/section-heading';
 import { EmptyState } from '@/components/system/states';
 import type { Product } from '@/lib/products/types';
 
@@ -10,24 +11,27 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
     <section className="ds-section" aria-labelledby="featured-title">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            id="featured-title"
+          <SectionIntro
+            index="05"
             eyebrow="From the catalogue"
-            title="Featured products"
-            lede="A selection from the current catalogue. Open a product to review it and send an enquiry."
+            id="featured-title"
+            title="Featured food lines."
+            lede="A selection from the current food catalogue. Open a product to review it, add it to an enquiry list, or message us."
           />
           <Link href="/products" className="ds-small font-semibold text-navy hover:text-gold-deep">
-            All products
+            All food lines
           </Link>
         </div>
         {products.length ? (
-          <ul className="ds-card-grid mt-12">
-            {products.map((product) => (
-              <li key={product.id}>
-                <CatalogueCard product={product} />
-              </li>
-            ))}
-          </ul>
+          <Reveal>
+            <ul className="ds-card-grid mt-12">
+              {products.map((product) => (
+                <li key={product.id} className="reveal-item">
+                  <CatalogueCard product={product} />
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         ) : (
           <div className="mt-12">
             <EmptyState
