@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Metadata, Viewport } from 'next';
-import { Newsreader, Source_Sans_3 } from 'next/font/google';
+import { Cormorant_Garamond, Newsreader, Source_Sans_3 } from 'next/font/google';
+import Script from 'next/script';
 import { COMPANY, metadataBaseUrl } from '@/lib/site';
 import './globals.css';
 
@@ -14,8 +15,18 @@ const sans = Source_Sans_3({
 
 const serif = Newsreader({
   subsets: ['latin'],
-  weight: ['500'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
   variable: '--font-newsreader',
+  display: 'swap',
+  adjustFontFallback: true,
+});
+
+const lil = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['500'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
   display: 'swap',
   adjustFontFallback: true,
 });
@@ -40,18 +51,30 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_AE',
     siteName: COMPANY,
-    images: [{ url: '/logo.png', alt: COMPANY }],
+    images: [
+      {
+        url: '/images/lil/lil-og-share-1200x630.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Lil by lafa',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/images/home/lafa-hero.jpg'],
+    images: ['/images/lil/lil-og-share-1200x630.jpg'],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
-      <body className="min-h-screen bg-ivory font-sans text-charcoal antialiased">{children}</body>
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${lil.variable}`}>
+      <body className="min-h-screen bg-ivory font-sans text-charcoal antialiased">
+        <Script id="js-class" strategy="beforeInteractive">
+          {`document.documentElement.classList.add('js')`}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }

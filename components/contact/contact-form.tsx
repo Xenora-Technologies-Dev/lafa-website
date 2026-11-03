@@ -1,14 +1,16 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { EnquiryListNote } from '@/components/contact/enquiry-list';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { readEnquiryList } from '@/lib/enquiry-list';
 
 type Status = 'idle' | 'sending' | 'sent' | 'local' | 'error';
 
-export function ContactForm({ interest }: { interest: string }) {
+export function ContactForm({ interest, division = 'food' }: { interest: string; division?: string }) {
   const [status, setStatus] = useState<Status>('idle');
   const [message, setMessage] = useState('');
 
@@ -21,14 +23,20 @@ export function ContactForm({ interest }: { interest: string }) {
       return;
     }
 
+    const divisionValue = String(data.get('division') || '');
+    const divisionLabel = divisionValue === 'lil' ? 'Lil by lafa' : 'Food';
+    const interestValue = [divisionLabel, String(data.get('interest') || '')].filter(Boolean).join(' — ');
+    const list = readEnquiryList();
+    const note = list.length ? `\n\nEnquiry list: ${list.join(', ')}` : '';
     const payload = {
       name: String(data.get('name') || ''),
       company: String(data.get('company') || ''),
       email: String(data.get('email') || ''),
       phone: String(data.get('phone') || ''),
       market: String(data.get('market') || ''),
-      interest: String(data.get('interest') || ''),
-      message: String(data.get('message') || ''),
+      interest: interestValue,
+      message: `${String(data.get('message') || '')}${note}`,
+      division: divisionLabel,
       'bot-field': String(data.get('bot-field') || ''),
     };
 
@@ -108,8 +116,16 @@ export function ContactForm({ interest }: { interest: string }) {
           <input name="bot-field" tabIndex={-1} autoComplete="off" />
         </label>
       </p>
+      <EnquiryListNote />
+      <div className="space-y-2">
+        <Label htmlFor="division">Division</Label>
+        <select id="division" name="division" defaultValue={division === 'lil' ? 'lil' : 'food'} className="ds-control">
+          <option value="food">Food</option>
+          <option value="lil">Lil by lafa</option>
+        </select>
+      </div>
       <Field label="Name" name="name" required autoComplete="name" />
-      <Field label="Company" name="company" required autoComplete="organization" />
+      <Field label="Company" name="company" autoComplete="organization" />
       <Field label="Email" name="email" type="email" required autoComplete="email" />
       <Field label="Phone" name="phone" type="tel" autoComplete="tel" />
       <Field label="Country / market" name="market" autoComplete="country-name" />
