@@ -85,7 +85,6 @@ export function Navigation({
             {item.label}
           </Link>
         ))}
-        <OpenContactButton className="ds-btn ds-btn-wa ds-button" label="WhatsApp" division={division} />
         {action ? (
           <Link href={action.href} className="ds-btn ds-button">
             {action.label}
@@ -120,7 +119,7 @@ export function Navigation({
                   <Link
                     href={item.href}
                     aria-current={isCurrent(pathname, item.href) ? 'page' : undefined}
-                    className={cn('ds-nav block py-4', isCurrent(pathname, item.href) && 'shadow-[inset_3px_0_0_var(--ds-gold)]')}
+                    className={cn('ds-nav site-drawer-link block py-4', isCurrent(pathname, item.href) && 'shadow-[inset_3px_0_0_var(--ds-gold)]')}
                     onClick={closeMenu}
                   >
                     {item.label}

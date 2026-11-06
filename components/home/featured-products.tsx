@@ -18,13 +18,13 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
             title="Featured food lines."
             lede="A selection from the current food catalogue. Open a product to review it, add it to an enquiry list, or message us."
           />
-          <Link href="/products" className="ds-small font-semibold text-navy hover:text-gold-deep">
+          <Link href="/products" className="ds-text-link">
             All food lines
           </Link>
         </div>
         {products.length ? (
           <Reveal>
-            <ul className="ds-card-grid mt-12">
+            <ul className="ds-rail-cards mt-12">
               {products.map((product) => (
                 <li key={product.id} className="reveal-item">
                   <CatalogueCard product={product} />

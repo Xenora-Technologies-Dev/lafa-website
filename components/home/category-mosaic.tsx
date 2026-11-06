@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
 import { SectionIntro } from '@/components/home/section-intro';
+import { Plate } from '@/components/motion/reveal';
 import { Container } from '@/components/system/container';
 import { MOTION_QUERY, gsap, useGSAP } from '@/lib/gsap';
 import { productListHref } from '@/lib/products';
@@ -11,31 +12,37 @@ import type { ProductCategory } from '@/lib/products/types';
 
 export function CategoryMosaic({ categories }: { categories: ProductCategory[] }) {
   const ref = useRef<HTMLElement>(null);
+  const [lead, ...rest] = categories;
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add(MOTION_QUERY, () => {
-      gsap.utils.toArray<HTMLElement>('.mosaic-card').forEach((card, index) => {
+      const leadImage = ref.current?.querySelector<HTMLElement>('.lead-plate img');
+      if (leadImage) {
         gsap.fromTo(
-          card,
-          { y: 28 },
+          leadImage,
+          { yPercent: -4 },
           {
-            y: 0,
-            duration: 0.7,
-            delay: (index % 4) * 0.08,
-            ease: 'power2.out',
-            scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' },
+            yPercent: 4,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.lead-plate',
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
           },
         );
-        const image = card.querySelector('img');
-        if (!image) return;
+      }
+      gsap.utils.toArray<HTMLElement>('.index-row').forEach((row) => {
         gsap.fromTo(
-          image,
-          { yPercent: -6 },
+          row,
+          { y: 18 },
           {
-            yPercent: 6,
-            ease: 'none',
-            scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true },
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: row, start: 'top 92%', toggleActions: 'play none none none' },
           },
         );
       });
@@ -53,28 +60,54 @@ export function CategoryMosaic({ categories }: { categories: ProductCategory[] }
           title="The trading categories."
           lede="Eleven lines from the food catalogue. Open one to see what is listed, or send an enquiry if the specification is not shown. Photographs here are campaign imagery."
         />
-        <ul className="mt-12 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((category, index) => (
-            <li key={category.slug} className={index === 0 ? 'sm:col-span-2 lg:col-span-2' : undefined}>
-              <Link href={productListHref({ category: category.slug })} className="mosaic-card reveal-item group block h-full">
-                <div className={`relative overflow-hidden ${index === 0 ? 'aspect-[16/9]' : 'aspect-square'}`}>
-                  <Image
-                    src={category.image.src}
-                    alt={category.image.alt}
-                    fill
-                    sizes={index === 0 ? '(min-width: 1024px) 40rem, 100vw' : '(min-width: 1024px) 20rem, 50vw'}
-                    className="object-cover"
-                  />
-                </div>
-                <span className="mt-4 block border-t border-line pt-3 transition-colors group-hover:border-gold">
-                  <span className="ds-label">{String(index + 1).padStart(2, '0')}</span>
-                  <h3 className="ds-h3 mt-2">{category.title}</h3>
-                  <span className="ds-small mt-2 block">{category.summary}</span>
-                </span>
+        {lead ? (
+          <div className="mt-12 grid items-end gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-10">
+            <Plate className="lead-plate">
+              <Link href={productListHref({ category: lead.slug })} className="relative block aspect-[16/9] overflow-hidden">
+                <Image
+                  src={lead.image.src}
+                  alt={lead.image.alt}
+                  fill
+                  sizes="(min-width: 1024px) 48rem, 100vw"
+                  className="object-cover"
+                />
               </Link>
-            </li>
-          ))}
-        </ul>
+            </Plate>
+            <div>
+              <p className="ds-label">01</p>
+              <h3 className="ds-h2 mt-3">
+                <Link href={productListHref({ category: lead.slug })} className="hover:text-navy-soft">
+                  {lead.title}
+                </Link>
+              </h3>
+              <p className="ds-small mt-3">{lead.summary}</p>
+            </div>
+          </div>
+        ) : null}
+        {rest.length ? (
+          <ul className="category-index mt-8 lg:mt-6">
+            {rest.map((category, index) => (
+              <li key={category.slug} className="index-row">
+                <Link href={productListHref({ category: category.slug })}>
+                  <span className="index-thumb">
+                    <Image
+                      src={category.image.src}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 8rem, 16rem"
+                      className="object-cover"
+                    />
+                  </span>
+                  <span className="mt-3 block lg:mt-0">
+                    <span className="ds-label">{String(index + 2).padStart(2, '0')}</span>
+                    <span className="ds-h3 mt-2 block">{category.title}</span>
+                    <span className="ds-small mt-2 hidden lg:block">{category.summary}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </Container>
     </section>
   );

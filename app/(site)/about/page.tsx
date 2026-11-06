@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ClosingBand } from '@/components/home/closing-band';
 import { CompanyFacts } from '@/components/company/company-facts';
 import { ArtImage } from '@/components/media/art-image';
+import { Plate } from '@/components/motion/reveal';
 import { Container } from '@/components/layout/container';
 import { EnquiryProcess } from '@/components/sections/enquiry-process';
 import { PageHeader } from '@/components/sections/page-header';
@@ -49,23 +50,28 @@ export default function AboutPage() {
           </div>
         </div>
         <figure className="m-0">
-          <div className="relative aspect-[16/10] overflow-hidden">
-            <ArtImage desktop={foodMedia.warehouse} alt={foodMedia.warehouseAlt} className="h-full w-full object-cover" sizes="(min-width: 1024px) 36rem, 100vw" />
-          </div>
+          <Plate>
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <ArtImage desktop={foodMedia.warehouse} alt={foodMedia.warehouseAlt} className="h-full w-full object-cover" sizes="(min-width: 1024px) 36rem, 100vw" />
+            </div>
+          </Plate>
           <figcaption className="campaign-note mt-3">Campaign imagery</figcaption>
         </figure>
       </Container>
       <section className="border-t border-line bg-paper">
         <Container className="ds-section">
           <h2 className="ds-h2">What we do</h2>
-          <ul className="ds-card-grid mt-8">
-            {capabilities.map((item) => (
-              <li key={item.title} className="border border-line bg-ivory p-5">
-                <h3 className="ds-h3">{item.title}</h3>
-                <p className="ds-small mt-2">{item.text}</p>
+          <ol className="ds-ledger mt-8">
+            {capabilities.map((item, index) => (
+              <li key={item.title}>
+                <p className="ds-label">{String(index + 1).padStart(2, '0')}</p>
+                <div>
+                  <h3 className="ds-h3">{item.title}</h3>
+                  <p className="ds-small mt-2">{item.text}</p>
+                </div>
               </li>
             ))}
-          </ul>
+          </ol>
         </Container>
       </section>
       <section className="border-t border-line">

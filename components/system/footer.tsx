@@ -6,7 +6,7 @@ import { Small } from '@/components/system/type';
 
 function LinkList({ title, items }: { title: string; items: readonly NavItem[] }) {
   return (
-    <div>
+    <div className="border-t border-white/15 pt-5">
       <p className="ds-label">{title}</p>
       <ul className="mt-4 space-y-2">
         {items.map((item) => (
@@ -42,18 +42,20 @@ export function Footer({
 }) {
   return (
     <footer className="on-dark mt-auto border-t border-gold bg-navy-deep text-foam">
-      <div className="ds-container grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:py-16">
-        <div className="sm:col-span-2 lg:col-span-1">
+      <div className="ds-container py-14 lg:py-16">
+        <div className="border-b border-white/15 pb-10">
           <div className="inline-block bg-paper p-2">
             <BrandLogo variant="footer" decorative />
           </div>
-          <Small className="mt-5 max-w-sm">{summary}</Small>
+          <Small className="mt-5 max-w-xl">{summary}</Small>
         </div>
-        <LinkList title="Pages" items={pages} />
-        <LinkList title="Products" items={categories} />
-        <div>
-          <p className="ds-label">Contact</p>
-          <div className="mt-4">{contact}</div>
+        <div className="grid gap-10 pt-10 sm:grid-cols-2 lg:grid-cols-3">
+          <LinkList title="Pages" items={pages} />
+          <LinkList title="Food" items={categories} />
+          <div className="border-t border-white/15 pt-5">
+            <p className="ds-label">Contact</p>
+            <div className="mt-4">{contact}</div>
+          </div>
         </div>
       </div>
       <div className="border-t border-white/10">

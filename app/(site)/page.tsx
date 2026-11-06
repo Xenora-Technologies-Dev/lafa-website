@@ -5,7 +5,7 @@ import { Divisions } from '@/components/home/divisions';
 import { FeaturedProducts } from '@/components/home/featured-products';
 import { HomeHero } from '@/components/home/home-hero';
 import { LilTeaser } from '@/components/home/lil-teaser';
-import { TrustMarquee } from '@/components/home/trust-marquee';
+import { HouseIndex } from '@/components/home/house-index';
 import { WhatWeDo } from '@/components/home/what-we-do';
 import { SectionIntro } from '@/components/home/section-intro';
 import { InsightsPreview } from '@/components/sections/insights-preview';
@@ -36,7 +36,7 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero />
-      <TrustMarquee />
+      <HouseIndex />
       <WhatWeDo />
       <Divisions />
       <CategoryMosaic categories={categories} />
@@ -51,7 +51,7 @@ export default async function HomePage() {
             lede="The same three steps cover food supply. For Lil, name the line and the piece and we reply the same way."
           />
           <div className="mt-10">
-            <EnquiryProcess title="Three steps" />
+            <EnquiryProcess showTitle={false} />
           </div>
         </Container>
       </section>

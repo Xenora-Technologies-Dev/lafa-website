@@ -25,10 +25,10 @@ export default async function InsightsPage() {
         lede="Short notes on sourcing, wholesale supply, and cross-border trade from Dubai."
       />
       {posts.length ? (
-        <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]">
+        <div className="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
           {posts[0] ? (
-            <Link href={`/insights/${posts[0].slug}`} className="block border border-line bg-white p-6 hover:border-gold lg:p-8">
-              <p className="ds-label">Featured</p>
+            <Link href={`/insights/${posts[0].slug}`} className="block border-t border-gold pt-6">
+              <p className="ds-label">Latest</p>
               <time className="ds-small mt-4 block" dateTime={posts[0].publishedAt}>
                 {formatDate(posts[0].publishedAt)}
               </time>
@@ -36,19 +36,24 @@ export default async function InsightsPage() {
               <span className="ds-body mt-4 block">{posts[0].excerpt}</span>
             </Link>
           ) : null}
-          <ul className="space-y-4">
-            {posts.slice(1).map((post) => (
-              <li key={post.id}>
-                <Link href={`/insights/${post.slug}`} className="block border border-line bg-white p-5 hover:border-gold">
-                  <time className="ds-small" dateTime={post.publishedAt}>
-                    {formatDate(post.publishedAt)}
-                  </time>
-                  <span className="ds-h3 mt-2 block">{post.title}</span>
-                  <span className="ds-small mt-2 block">{post.excerpt}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {posts.length > 1 ? (
+            <ul className="ds-ledger">
+              {posts.slice(1).map((post, index) => (
+                <li key={post.id}>
+                  <p className="ds-label">{String(index + 2).padStart(2, '0')}</p>
+                  <div>
+                    <time className="ds-small" dateTime={post.publishedAt}>
+                      {formatDate(post.publishedAt)}
+                    </time>
+                    <Link href={`/insights/${post.slug}`} className="ds-h3 mt-2 block hover:text-navy-soft">
+                      {post.title}
+                    </Link>
+                    <p className="ds-small mt-2">{post.excerpt}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
       ) : (
         <div className="mt-12">

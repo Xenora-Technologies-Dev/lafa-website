@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ClosingBand } from '@/components/home/closing-band';
 import { ArtImage } from '@/components/media/art-image';
+import { Plate } from '@/components/motion/reveal';
 import { Container } from '@/components/layout/container';
 import { PageHeader } from '@/components/sections/page-header';
 import { EnquiryProcess } from '@/components/sections/enquiry-process';
@@ -35,15 +36,17 @@ export default async function ExportPage() {
         />
         <div className="mt-12 grid items-start gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <figure className="m-0">
-            <div className="relative aspect-video overflow-hidden">
-              <ArtImage
-                desktop={foodMedia.portAerial}
-                alt={foodMedia.portAerialAlt}
-                priority
-                className="h-full w-full object-cover"
-                sizes="(min-width: 1024px) 48rem, 100vw"
-              />
-            </div>
+            <Plate>
+              <div className="relative aspect-video overflow-hidden">
+                <ArtImage
+                  desktop={foodMedia.portAerial}
+                  alt={foodMedia.portAerialAlt}
+                  priority
+                  className="h-full w-full object-cover"
+                  sizes="(min-width: 1024px) 48rem, 100vw"
+                />
+              </div>
+            </Plate>
             <figcaption className="campaign-note mt-3">Campaign imagery</figcaption>
           </figure>
           <div>

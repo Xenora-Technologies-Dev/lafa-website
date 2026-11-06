@@ -24,10 +24,10 @@ export default function LilPage() {
       <section className="ds-section border-t border-[var(--lil-gold)]" aria-labelledby="occasion-title">
         <div className="ds-container">
           <h2 id="occasion-title" className="ds-h2">For the day you have in mind</h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="occasion-row mt-8">
             {lilOccasions.map((item) => (
               <li key={item.title}>
-                <Link href={item.href} className="block h-full border border-[var(--lil-gold)] bg-white/40 p-5">
+                <Link href={item.href}>
                   <h3 className="ds-h3">{item.title}</h3>
                   <p className="ds-small mt-2">{item.text}</p>
                 </Link>

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { BrandLogo } from '@/components/system/logo';
 import { Navigation, type NavItem } from '@/components/system/navigation';
 import { emailHref, telHref } from '@/lib/contact';
-import { contactFacts, phoneLines } from '@/lib/site-facts';
+import { confirmedPlace, contactFacts, phoneLines } from '@/lib/site-facts';
 
 export function Header({
   items,
@@ -14,13 +14,18 @@ export function Header({
   return (
     <header className="site-header">
       <div className="site-topbar">
-        <div className="ds-container flex items-center justify-end gap-x-6 py-2">
-          {phoneLines.map((line) => (
-            <a key={line.e164} href={telHref(line)}>
-              {line.display}
-            </a>
-          ))}
-          {contactFacts.email ? <a href={emailHref()}>{contactFacts.email}</a> : null}
+        <div className="ds-container site-topbar-row">
+          <p>
+            {confirmedPlace.locality}, {confirmedPlace.country}
+          </p>
+          <div className="site-topbar-links">
+            {phoneLines.map((line) => (
+              <a key={line.e164} href={telHref(line)}>
+                {line.display}
+              </a>
+            ))}
+            {contactFacts.email ? <a href={emailHref()}>{contactFacts.email}</a> : null}
+          </div>
         </div>
       </div>
       <div className="h-px bg-gold" aria-hidden="true" />
